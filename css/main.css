@@ -1,0 +1,662 @@
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+a {
+    color: #90907F;
+    /*color: #00e;*/
+}
+
+a:visited {
+    color: #999;
+    /*color: #551a8b;*/
+}
+
+a:hover {
+    color: #ACAC9D;
+    /*color: #06e;*/
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+img {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+* {
+    /* Enables box-sizing goodness! */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/**
+ * =HEADERS
+ */
+
+/* base body styles */
+body {
+    background: #F0F0E1 url(../img/bg-light-pattern.png) center top repeat;          
+    color: #90907F;
+    font-family: Helvetica, Arial, Tahoma, sans-serif;
+}
+
+.wrapper {
+    position: relative;
+    width: 320px;
+    overflow: hidden;
+}
+
+#home,
+#page-results {
+    position: relative;
+    text-rendering: antialiased;
+}
+
+.page-home {
+    background: url(../img/bg-map.png) left -20px repeat-x;
+}
+
+.hero,
+.search,
+.notice { padding: 0 25px 0 35px; }
+
+.hero {
+    padding-top: 40px;
+}
+
+.branding { position: relative; }
+
+.branding .title {
+    margin-top: 0;
+    margin-bottom: 0.4em;
+    font-family: 'Trebuchet MS', Calibri, Arial, sans-serif;
+    font-style: italic;
+    font-size: 2em;
+    letter-spacing: -2px;
+}
+
+.branding .title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.branding .slogan {
+    font-size: 1em;
+    font-weight: normal;
+}
+
+/* positions the bus marker on the map */
+.branding .bus-marker {
+    position: absolute;
+    top: -15px;
+    left: 150px;
+}
+
+.hero .description {
+    line-height: 1.4em;
+    font-size: 0.9em;
+}
+
+.hero .slogan,
+.hero .description { margin: 10px 0; }
+
+/**
+ * =HEADSIGN
+ */
+
+.page .headsign {
+    width: 320px;
+    height: 55px;
+    padding: 10px;
+    -webkit-box-shadow: 0 3px 9px -2px #9B9B8C;
+    -moz-box-shadow: 0 3px 9px -2px #9B9B8C;
+    box-shadow: 0 3px 9px -2px #9B9B8C;
+    background-color: #fff;
+    background-image: -webkit-linear-gradient(top, #fff 60%, #eee 100%);
+    background-image: -moz-linear-gradient(top, #fff 60%, #eee 100%);
+    background-image: linear-gradient(top, #fff 60%, #eee 100%);
+    z-index: 100;
+}
+
+.headsign .info {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    text-align: center;
+    color: #444;
+    line-height: 1.15em;
+    z-index: -1; /* previne sobreposição dos botões da barra */
+}
+
+.headsign .info .line { font-weight: bold; }
+
+.headsign a { text-decoration: none; }
+
+.headsign .info .status {
+    font-size: 0.8em;
+    color: #aaa;
+}
+
+.headsign .search-button { float: left; }
+.headsign .map-button { float: right; }
+
+.headsign .button a {
+    display: block;
+    width: 34px;
+    height: 35px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 0 #fff;
+    -moz-box-shadow: 0 1px 0 #fff;
+    box-shadow: 0 1px 0 #fff;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    white-space: nowrap;
+    text-indent: 100%;
+}
+
+.headsign .search-button a {
+    background-position: -1px 0, center;
+    background-image: url(../img/ico-search-20.png), -webkit-linear-gradient(top, #fff 23%, #eee 86%);
+}
+
+.headsign .search-button a:active {
+    border-color: #222;
+    background-position: 33px 0, center;
+    background-image: url(../img/ico-search-20.png), -webkit-linear-gradient(top, #999 23%, #777 86%);
+}
+
+.headsign .map-button a {}
+
+/**
+ * =SEARCH
+ */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.home-search {
+    margin: 20px 0;
+}
+
+.home-search .bus-line {
+    width: 100%;
+    padding: 12px 10px;
+    border: 1px solid #DFDFD0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    background-image: -webkit-linear-gradient(top, #F4F4EA 0%, #fff 16%);
+    background-image: -moz-linear-gradient(top, #F4F4EA 0%, #fff 16%);
+    background-image: linear-gradient(top, #F4F4EA 0%, #fff 16%);
+    color: #999;
+    font-size: 1em;
+}
+
+.home-search .bus-line:focus {
+    border: 1px solid #919180;
+    outline: 0;
+    color: #444;
+}
+
+.search-submit {
+    width: 100%;
+    height: 45px;
+    border-radius: 5px;
+    margin-top: 10px;
+    background: #28C19F;
+    background-image: -webkit-linear-gradient(top, #28C19F 0%, #21A386 100%);
+    background-image: -moz-linear-gradient(top, #28C19F 0%, #21A386 100%);
+    background-image: linear-gradient(top, #28C19F 0%, #21A386 100%);
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #fff;
+    text-shadow: 0 1px 0 #1B836B;
+    border: 1px solid #1B836B;
+}
+
+.search-submit[disabled] {
+    opacity: 0.5;
+}
+
+#search-form legend {
+    display: none;
+    visibility: hidden;
+}
+
+/**
+ * =MAIN
+ */
+
+.page .headsign {
+    position: fixed;
+/*    top: 0;
+    left: 50%;
+    margin-left: -160px;*/
+}
+
+.page .itinerary {
+    padding-top: 55px;
+}
+
+.current-location,
+.itinerary .points {
+    list-style: none;
+    padding: 10px;
+}
+
+.detail p { margin: 2px 0; }
+
+.point .marker,
+.point .detail,
+.current-location .marker,
+.current-location .detail {
+    float: left;
+}
+
+.itinerary .point {
+    position: relative;
+    display: inline-block;
+    clear: right;
+}
+
+.itinerary .point ~ .point {
+    margin-top: 20px;
+}
+
+.itinerary .point::before {
+    position: absolute;
+    content: '';
+    width: 40px;
+    height: 0;
+    top: 15px;
+    left: 0;
+    border-top: 1px solid #dfdfd0;
+}
+
+.point.street-view::before,
+.point.point-of-interest::before {
+    left: -25px;
+    width: 65px;
+}
+
+.point.street-view::after,
+.point.point-of-interest::after {
+    position: absolute;
+    content: '';
+    width: 7px;
+    height: 7px;
+    left: -29px;
+    top: 10px;
+    border: 1px solid #dfdfd0;
+    background-color: #fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+
+.point.street-view,
+.point.point-of-interest { margin-left: 40px; }
+
+.point.street-view .detail { padding: 5px; }
+
+.point .detail {
+    padding: 3px 8px 2px;
+    margin-left: 10px;
+    border: 1px solid #DFDFCF;
+    background: #fff;
+    line-height: 1.2em;
+    width: 260px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 3px 2px -2px #686859;
+    -moz-box-shadow: 0 3px 2px -2px #686859;
+    box-shadow: 0 3px 2px -2px #686859;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+
+.street-view .detail,
+.point-of-interest .detail { width: 220px; }
+
+.point .name { color: #333; }
+
+.current-location .text { color: #666; }
+
+.current-location .detail {
+    margin-left: 10px;
+}
+
+.current-location .announcement {
+    text-transform: uppercase;
+    color: #999;
+    font-size: 0.7em;
+    line-height: 1em;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.current-location .text {
+    font-size: 0.8em;
+}
+
+.points .detail .category {
+    text-transform: uppercase;
+    font-size: 0.7em;
+}
+
+/**
+ * =MARKERS
+ */
+
+.marker {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #DFDFCF;
+    background: #fff;
+    text-indent: 100%;
+    white-space: nowrap;
+    display: table-cell;
+    font-size: 0;
+}
+
+.marker {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 3px 2px -2px #686859;
+    -moz-box-shadow: 0 3px 2px -2px #686859;
+    box-shadow: 0 3px 2px -2px #686859;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+
+.bus-marker::before,
+.bus-marker::after {
+    position: absolute;
+    border: solid transparent;
+    top: 100%;
+    width: 0;
+    height: 0;
+    content: ' ';
+    pointer-events: none;
+}
+
+.bus-marker::before {
+    left: 50%;
+    margin-left: -7px;
+    border-width: 7px;
+    border-top-color: #DFDFCF;
+}
+
+.bus-marker::after {
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-top-color: #fff;
+}
+
+.marker {
+    background-color: #fff;
+    background-image: url(../img/ico-pin-16.png);
+    background-position: 8px center;
+    background-repeat: no-repeat;
+}
+
+.street-view .marker {
+    background-image:  url(../img/ico-camera.png);
+    background-position: 4px center;
+}
+
+.turn .marker {
+    background-image: url(../img/ico-turn-left.png);
+}
+
+.bus-marker,
+.current-location .marker {
+    background-image: url(../img/ico-bus-16.png);
+    background-position: 7px center;
+}
+
+.itinerary .bus-stop .marker {
+    height: 38px;
+    border: 1px solid #085EA9;
+    background-position: center 3px, center;
+    background-image: url(../img/ico-bus-sign.png), -webkit-linear-gradient(-35deg, #085EA9 0%, #06467E 100%);
+    background-image: url(../img/ico-bus-sign.png), -moz-linear-gradient(-35deg, #085EA9 0%, #06467E 100%);
+    background-image: url(../img/ico-bus-sign.png), linear-gradient(-35deg, #085EA9 0%, #06467E 100%);
+    -webkit-box-shadow: 0 1px 0 #fff inset, 1px 0 0 #fff inset, -1px 0 0 #fff inset, 0 -1px 0 #fff inset, 0 3px 2px -2px #686859;
+    -moz-box-shadow: 0 1px 0 #fff inset, 1px 0 0 #fff inset, -1px 0 0 #fff inset, 0 -1px 0 #fff inset, 0 3px 2px -2px #686859;
+    box-shadow: 0 1px 0 #fff inset, 1px 0 0 #fff inset, -1px 0 0 #fff inset, 0 -1px 0 #fff inset, 0 3px 2px -2px #686859;
+}
+
+/**
+ * =MISCELLANEOUS
+ */
+
+ .guideline {
+    position: absolute;
+    top: 0;
+    left: 25px;
+    width: 1px;
+    height: 100%;
+    background: #DFDFD0;
+    z-index: -1;
+ }
+
+.notice {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.notice .availability {
+    font-size: 0.85em;
+}
+
+.notice .copyright {
+    color: #ACAC9D;
+    line-height: 1em;
+}
+
+.notice .wub { color: #e20; }
+
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/* Prevent callout */
+
+.nocallout {
+    -webkit-touch-callout: none;
+}
+
+.pressed {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* A hack for HTML5 contenteditable attribute on mobile */
+
+textarea[contenteditable] {
+    -webkit-appearance: none;
+}
+
+/* A workaround for S60 3.x and 5.0 devices which do not animated gif images if
+   they have been set as display: none */
+
+.gifhidden {
+    position: absolute;
+    left: -100%;
+}
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0;
+    direction: ltr;
+    display: block;
+    overflow: hidden;
+    text-align: left;
+    text-indent: -999em;
+}
+
+.ir br {
+    display: none;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/**
+ * Clearfix helper
+ * Used to contain floats: h5bp.com/q
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 480px) {
+    /* Style adjustments for viewports that meet the condition */
+    .wrapper,
+    .page .headsign { width: 480px;}
+    
+/*    .page .headsign { margin-left: -240px; } */
+    .itinerary .point .detail { width: 380px; }
+
+    .itinerary .turn .detail,
+    .itinerary .bus-stop .detail { width: 420px; }
+
+    .itinerary .street-view .detail { width: 220px; }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 144dpi) {
+    /* Style adjustments for viewports that meet the condition */
+}

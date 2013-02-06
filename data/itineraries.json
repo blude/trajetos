@@ -1,0 +1,26 @@
+{
+	"points": [{
+		"type": "poi",
+		"name": "Coronel Picana",
+		"category": "Restaurante brasileiro"
+	}, {
+		"type": "poi",
+		"name": "CNA",
+		"category": "Escola de idiomas"
+	}, {
+		"type": "bus-stop",
+		"number": 4867,
+		"reference": "Em frente ao Teatro Universitário"
+	}, {
+		"type": "turn",
+		"dir": "left",
+		"direction": "Virar à esquerda",
+		"name": "R. Carlos Martins"
+	}, {
+		"type": "street-view",
+		"coords": {
+			"lat": -20.26426,
+			"lon": -40.26943
+		}
+	}]
+}
