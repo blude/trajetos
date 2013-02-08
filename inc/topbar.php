@@ -4,6 +4,5 @@
 				<div class="line"><a href="#current-location"><strong class="number"><?= $page['line_num'] ?></strong> <span class="name"><?= $page['line_name']; ?></span></a></div>
 				<div class="status updated">Atualizado agora</div>
 			</div>
-			<div class="button map-button"><a href="#" id="toggle-map" title="Mostrar mapa da linha">Mostrar mapa da linha</a></div>
+			<div class="button map-button"><a href="#" title="Mostrar mapa da linha" id="toggle-map">Mostrar mapa da linha</a></div>
 		</header>
-		<div id="map"></div>

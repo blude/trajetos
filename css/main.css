@@ -98,7 +98,11 @@ body {
     text-rendering: antialiased;
 }
 
-#map { height: 180px; }
+.mapinha {
+    margin-top: 60px;
+    height: 180px;
+    display: none;
+}
 
 .page-home {
     background: url(../img/bg-map.png) left -20px repeat-x;

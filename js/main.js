@@ -5,14 +5,16 @@ MBP.enableActive();
 
 ;(function($) {
 
+    var updateTimer, isMapOpen = false, isMapInitialized = false;
+
     var resetTitle = function() {
         var title = document.title;
         document.title = title.substring(title.indexOf('-') + 2);
-    }
+    };
 
     var setTitle = function(title) {
         document.title = title + ' - ' + document.title;
-    }
+    };
 
     /**
      * Watch for the document load and scroll events
@@ -24,18 +26,16 @@ MBP.enableActive();
         $('#guide').height(actualHeight);
     });
 
-    var isMapOpen = true;
-
     /*
      * Deals with scrolling to the current position
      */
     var scrollToCurrent = function() {
         $.scroll($('#current-location').offset().top - 60);
-    }
+    };
 
     var flashCurrentDetail = function() {
         $('#current-location .detail').fadeOut(300, function() { $(this).fadeIn(300); });
-    }
+    };
 
     var animatePoint = function(point, offset) {
         point.animate({
@@ -43,10 +43,10 @@ MBP.enableActive();
         }, 300, 'ease-in', function() {
             point.css('top', '').appendTo('#past-points');
         });
-    }
+    };
 
     var updateItinerary = function() {
-        setTimeout(function() {
+        updateTimer = setTimeout(function() {
             var delta, current, point;
             current = $('#current-location');
             point = $('#upcoming-points').find('.point').first();
@@ -69,7 +69,7 @@ MBP.enableActive();
                 updateItinerary();
             }
         }, 5000);
-    }
+    };
 
     /**
      * Stop form submting
@@ -86,7 +86,7 @@ MBP.enableActive();
                 updateItinerary();
             });
         });
-     }
+     };
 
     $('#search-submit').on('click tap', function() {
         if (!$(this).attr('disabled')) {
@@ -109,15 +109,29 @@ MBP.enableActive();
         }
     });
 
+
+    $('#toggle-map').live('click tap', function() {
+        if (!isMapInitialized) {
+           var mapa = L.map('mapa').setView([51.505, -0.09], 13);
+           L.tileLayer('http://mt{s}.google.com/vt/v=w2.106&x={x}&y={y}&z={z}&s=', {subdomains: '0123', attribution:'&copy; Google 2012'}).addTo(mapa);
+           isMapInitialized = !isMapInitialized;
+        }
+        $.scroll(0);
+        $('#mapa').toggle();
+        isMapOpen = !isMapOpen;
+        return false;
+    });
+
     /*
      * This goes back to the search (home) page
      */
     $('#go-search').live('click tap', function() {
-        resetTitle();
+        clearTimeout(updateTimer);
         $('#page-results').addClass('hidden');
         $('#home').css('top', '').removeClass('hidden');
         $('#line-search').val('');
         $('#search-submit').val('Procurar');
+        resetTitle();
         $.scroll(0);
         return false;
     });
@@ -125,19 +139,8 @@ MBP.enableActive();
     /*
      * More event listeners
      */
-    $('.more').on('click tap', function() {
-        return false;
-    });
 
-    $('#line-search-form').on('submit', function() {
-        return false;
-    });
-
-    $('#toggle-map').on('click tap', function() {
-        return false;
-    });
-
-    $('#jump-to-current').on('click tap', function(e) {
+    $('#jump-to-current').on('click', function(e) {
         scrollToCurrent();
         e.preventDefault();
     });
