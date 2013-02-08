@@ -112,9 +112,12 @@ MBP.enableActive();
 
     $('#toggle-map').live('click tap', function() {
         if (!isMapInitialized) {
-           var mapa = L.map('mapa').setView([51.505, -0.09], 13);
-           L.tileLayer('http://mt{s}.google.com/vt/v=w2.106&x={x}&y={y}&z={z}&s=', {subdomains: '0123', attribution:'&copy; Google 2012'}).addTo(mapa);
-           isMapInitialized = !isMapInitialized;
+            var mapa = L.map('mapa').setView([-20.26413, -40.27017], 13);
+            L.tileLayer('http://{s}.tile.cloudmade.com/0f7e8149b8304f03b7bf4dc6d9082d6e/997/256/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                maxZoom: 18
+            }).addTo(mapa);
+            isMapInitialized = !isMapInitialized;
         }
         $.scroll(0);
         $('#mapa').toggle();
