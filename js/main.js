@@ -24,6 +24,8 @@ MBP.enableActive();
         $('#guide').height(actualHeight);
     });
 
+    var isMapOpen = true;
+
     /*
      * Deals with scrolling to the current position
      */
@@ -58,7 +60,7 @@ MBP.enableActive();
             animatePoint(point, delta);
             // verifica se o bloco que exibe a posicao atual
             // esta dentro da area visivel
-            if (isScrolledIntoView(current)) {
+            if (isScrolledIntoView(current) && !isMapOpen) {
                 scrollToCurrent();
             }
             flashCurrentDetail();
