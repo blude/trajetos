@@ -6,3 +6,4 @@
 			</div>
 			<div class="button map-button"><a href="#" id="toggle-map" title="Mostrar mapa da linha">Mostrar mapa da linha</a></div>
 		</header>
+		<div id="map"></div>

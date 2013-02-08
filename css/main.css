@@ -98,6 +98,8 @@ body {
     text-rendering: antialiased;
 }
 
+#map { height: 180px; }
+
 .page-home {
     background: url(../img/bg-map.png) left -20px repeat-x;
 }

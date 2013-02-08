@@ -2,6 +2,7 @@
 <script src="js/vendor/zepto.js"></script>
 <script src="js/vendor/zepto.scroll.js"></script>
 <script src="js/vendor/zepto.fx_methods.js"></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
 <script src="js/helper.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
