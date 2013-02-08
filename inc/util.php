@@ -13,7 +13,7 @@ function partial( $names, $page = array() ) {
 	}
 }
 
-$json = file_get_contents( 'http://trajetos.dev/data/itineraries.json' );
+$json = file_get_contents( 'data/itineraries.json' );
 $data = json_decode( $json );
 
 function getItinerary( $line = null, $bound_to = null ) {
