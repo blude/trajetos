@@ -99,7 +99,8 @@ body {
 }
 
 .mapinha {
-    height: 180px;
+    border: 4px solid #fff;
+    height: 220px;
     display: none;
 }
 
