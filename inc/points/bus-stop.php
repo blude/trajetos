@@ -3,6 +3,6 @@
 					<div class="detail">
 						<p class="name"><strong>Ponto nº <?= $point->number; ?></strong></p>
 						<p class="description"><?= $point->reference; ?></p>
-						<p class="hood">Goiabeiras</p>
+						<p class="hood"><?= $point->hood; ?></p>
 					</div>
 				</li>

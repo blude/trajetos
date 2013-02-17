@@ -27,8 +27,8 @@ function getItinerary( $line = null, $bound_to = null ) {
 	}
 }
 
-function streetView( $lat, $lon, $fov = 90, $heading = 235, $pitch = 10, $width = 208, $height = 156 ) {
-	echo "<img src=\"http://maps.googleapis.com/maps/api/streetview?size=${width}x${height}&location=${lat}%20${lon}&fov=${fov}&heading=${heading}&pitch=${pitch}&sensor=false\" alt=\"\" width=\"${width}\" height=\"${height}\">";
+function streetView( $lat, $lon, $fov = 90, $heading = 235, $pitch = 10 ) {
+	echo "<img src=\"http://maps.googleapis.com/maps/api/streetview?size=416x312&location=${lat}%20${lon}&fov=${fov}&heading=${heading}&pitch=${pitch}&sensor=false\" alt=\"\" width=\"208\" height=\"156\">";
 }
 
 /*
