@@ -114,14 +114,14 @@ MBP.enableActive();
         if (!isMapInitialized) {
             var mapa = L.map('mapa').setView([-20.26413, -40.27017], 13);
             L.tileLayer('http://{s}.tile.cloudmade.com/0f7e8149b8304f03b7bf4dc6d9082d6e/997/256/{z}/{x}/{y}.png', {
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                attribution: '',
                 maxZoom: 18
             }).addTo(mapa);
-            L.Util.requestAnimFrame(mapa.invalidateSize, mapa, !1, mapa._container);
-            isMapInitialized = !isMapInitialized;
+            L.Util.requestAnimFrame(mapa.invalidateSize, mapa, false, mapa._container);
+            isMapInitialized = true;
         }
         $.scroll(0);
-        $('#mapa').toggle();
+        $('#mapa').fadeToggle(200);
         isMapOpen = !isMapOpen;
         return false;
     });
@@ -144,7 +144,7 @@ MBP.enableActive();
      * More event listeners
      */
 
-    $('#jump-to-current').on('click', function(e) {
+    $('#goto-current').live('tap click', function(e) {
         scrollToCurrent();
         e.preventDefault();
     });
