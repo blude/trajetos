@@ -471,9 +471,8 @@ input::-webkit-inner-spin-button {
     background-position: 4px center;
 }
 
-.turn .marker {
-    background-image: url(../img/ico-turn-left.png);
-}
+.turn .marker.turn-left { background-image: url(../img/ico-turn-left.png); }
+.turn .marker.turn-right { background-image: url(../img/ico-turn-right.png); }
 
 .bus-marker,
 .current-location .marker {
