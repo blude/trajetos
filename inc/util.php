@@ -1,6 +1,6 @@
 <?php
 
-ini_set( 'display_errors', 1);
+ini_set( 'display_errors', true );
 error_reporting( E_ALL );
 
 define( 'SELF', $_SERVER['REQUEST_URI'] );
@@ -27,8 +27,8 @@ function getItinerary( $line = null, $bound_to = null ) {
 	}
 }
 
-function streetView( $lat, $lon, $fov = 90, $heading = 235, $pitch = 10 ) {
-	echo "<img src=\"http://maps.googleapis.com/maps/api/streetview?size=416x312&location=${lat}%20${lon}&fov=${fov}&heading=${heading}&pitch=${pitch}&sensor=false\" alt=\"\" width=\"208\" height=\"156\">";
+function streetView( $lat, $lon, $fov, $heading = 330, $pitch = 5 ) {
+	echo '<img src="http://maps.googleapis.com/maps/api/streetview?size=416x312&fov=' .$fov. '&location=' .$lat. '%20' .$lon. '&heading=' .$heading. '&pitch=' .$pitch. '&sensor=false" alt="" width="208" height="156">';
 }
 
 /*
