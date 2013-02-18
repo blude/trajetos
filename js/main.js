@@ -113,9 +113,10 @@ MBP.enableActive();
     $('#toggle-map').live('click tap', function() {
         if (!isMapInitialized) {
             var mapa = L.map('mapa').setView([-20.26413, -40.27017], 13);
-            L.tileLayer('http://{s}.tile.cloudmade.com/0f7e8149b8304f03b7bf4dc6d9082d6e/997/256/{z}/{x}/{y}.png', {
-                attribution: '',
-                maxZoom: 18
+            L.tileLayer('http://mt{s}.google.com/vt/v=w2.106&x={x}&y={y}&z={z}&s=', {
+                attribution: 'Map by Google',
+                maxZoom: 18,
+                subdomains: '0123'
             }).addTo(mapa);
             L.Util.requestAnimFrame(mapa.invalidateSize, mapa, false, mapa._container);
             isMapInitialized = true;
