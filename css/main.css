@@ -289,6 +289,12 @@ input::-webkit-inner-spin-button {
  * =MAIN
  */
 
+.points > * {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
 .page .headsign {
     position: fixed;
 /*    top: 0;
