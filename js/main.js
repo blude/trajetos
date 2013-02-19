@@ -198,4 +198,6 @@ MBP.enableActive();
         }
     })();
 
+    $('.box').live('click', function(e) { e.preventDefault(); });
+
 })(window.Zepto);
