@@ -160,7 +160,7 @@ MBP.enableActive();
         }
         $.scroll(0);
         $('#mapa').fadeToggle(200);
-        if (isMapOpen) scrollToCurrent();
+        if (isMapOpen) $.scroll($('#current-location').offset().top - 310);
         isMapOpen = !isMapOpen;
         return false;
     });
