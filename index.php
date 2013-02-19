@@ -22,8 +22,11 @@ partial( array( 'header' ), array( 'title' => 'Trajetos+' ) );
 				</fieldset>
 				<div class="throbber hidden"></div>
 			</form>
-			<div class="search-suggestions hidden">
-				<!-- ajax autocomplete stuff here -->
+			<div class="search-suggestions">
+				<ul class="lines-found">
+					<li><a href="#121-ida"><span class="bounding">Ida: </span><span class="name">164 - Forte São João</span></a></li>
+					<li><a href="#121-volta"><span class="bounding">Volta: </span><span class="name">164 - Jardim Camburi</span></a></li>
+				</ul>
 			</div>
 		</div>
 		<footer class="notice" role="contentinfo">

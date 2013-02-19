@@ -503,6 +503,62 @@ input::-webkit-inner-spin-button {
 }
 
 /**
+ *  =SEARCH SUGGESTION
+ */
+
+.search-suggestions {
+    overflow: hidden;
+}
+
+.lines-found {
+    padding: 0;
+    list-style: none;
+}
+
+.lines-found a {
+    display: block;
+    border: 1px solid #DFDFD0;
+    border-radius: 0 0 5px 5px;
+    padding: 10px 15px 10px 10px;
+    background: #fff url(../img/arrow-r.png) right -61px no-repeat;
+    text-decoration: none;
+}
+
+.lines-found li:first-child a {
+    border-bottom: 0 none;
+    border-radius: 5px 5px 0 0;
+}
+
+.lines-found .bounding,
+.lines-found .name {
+    display: block;
+}
+
+.lines-found .bounding {
+    padding-right: 5px;
+    font-size: 0.8em;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #999;
+    text-transform: uppercase;
+}
+
+.lines-found .name {
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.lines-found a:active {
+    background: #929281 url(../img/arrow-r.png) right 0 no-repeat;
+}
+
+.lines-found a:active,
+.lines-found a:active .bounding {
+    color: #fff;
+}
+
+/**
  * =MISCELLANEOUS
  */
 
@@ -677,6 +733,12 @@ textarea[contenteditable] {
     .headsign .map-button a {
         background: url(../img/map@2x.png) no-repeat;
         background-size: 34px 35px;
+    }
+
+    .lines-found a,
+    .lines-found a:active {
+        background-image: url(../img/arrow-r@2x.png);
+        background-size: 22px 122px;
     }
 
 }
