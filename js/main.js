@@ -7,6 +7,12 @@ MBP.enableActive();
 
     var updateTimer, isMapOpen = false, isMapInitialized = false;
 
+    // Updated copyright date
+    (function() {
+        var currentYear = (new Date().getFullYear());
+        $('#current-year').text(currentYear);
+    })();
+
     var resetTitle = function() {
         var title = document.title;
         document.title = title.substring(title.indexOf('-') + 2);
@@ -88,9 +94,23 @@ MBP.enableActive();
         });
      };
 
+    var getCurrentLocation = function() {
+        navigator.geolocation.getCurrentPosition(function(location) {
+            console.log(location.coords.latitude +", "+ location.coords.longitude +" ("+ location.coords.accuracy +")");
+        }, function(error) {
+            if (error.PERMISSION_DENIED) {
+                console.log('Localização negada!');
+            }
+        });
+        return true;
+    }
+
     $('.lines-found a').on('click tap', function() {
         $('#line-search').blur();
-        showResults();
+        if (Modernizr.geolocation) {
+            var location = getCurrentLocation();
+        }
+        if (location) showResults();
         return false;
     });
     
@@ -108,17 +128,33 @@ MBP.enableActive();
         if ($(this).val().length > 3) {
             showSuggestions();
         }
+    }).on('focus', function() {
+        $.scroll($(this).offset().top - 5);
     });
 
 
     $('#toggle-map').live('click tap', function() {
         if (!isMapInitialized) {
-            var mapa = L.map('mapa').setView([-20.26413, -40.27017], 13);
+            var mapa = L.map('mapa');
             L.tileLayer('http://mt{s}.google.com/vt/v=w2.106&x={x}&y={y}&z={z}&s=', {
                 attribution: 'Map by Google',
-                maxZoom: 18,
+                maxZoom: 12,
                 subdomains: '0123'
             }).addTo(mapa);
+            mapa.locate({
+                setView: true,
+                maxZoom: 12
+            });
+            var onLocationFound = function(e) {
+                L.marker(e.latlng).addTo(mapa);
+            }
+            mapa.on('locationfound', onLocationFound);
+
+            function onLocationError(e) {
+                alert(e.message);
+            }
+            mapa.on('locationerror', onLocationError);
+
             L.Util.requestAnimFrame(mapa.invalidateSize, mapa, false, mapa._container);
             isMapInitialized = true;
         }
@@ -136,7 +172,10 @@ MBP.enableActive();
         $('#page-results').addClass('hidden');
         $('#home').css('top', '').removeClass('hidden');
         $('#line-search').val('');
-        $('#search-submit').val('Procurar');
+        $('.lines-found').css({
+            marginTop: '-193px',
+            opacity: 0
+        });
         resetTitle();
         $.scroll(0);
         return false;
@@ -150,12 +189,6 @@ MBP.enableActive();
         scrollToCurrent();
         e.preventDefault();
     });
-
-    // Updated copyright date
-    (function() {
-        var currentYear = (new Date().getFullYear());
-        $('#current-year').text(currentYear);
-    })();
 
     // Shortcut to show results
     (function() {
