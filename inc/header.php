@@ -8,7 +8,7 @@
 	<meta name="description" content="Siga por locais de interesse, fotos, mapas, indicações curva-a-curva e nunca mais desça num ponto de ônibus errado.">
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width,user-scalable=no">
 	<meta http-equiv="cleartype" content="on">
 
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png">
