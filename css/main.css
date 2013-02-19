@@ -221,7 +221,9 @@ body {
     background-image: url(../img/ico-search-20.png), -webkit-linear-gradient(top, #999 23%, #777 86%);
 }
 
-.headsign .map-button a {}
+.headsign .map-button a {
+    background: url(../img/map.png) no-repeat;
+}
 
 /**
  * =SEARCH
@@ -381,7 +383,9 @@ input::-webkit-inner-spin-button {
 .street-view .detail,
 .point-of-interest .detail { width: 220px; }
 
-.point .name { color: #333; }
+.point .name,
+.point .label,
+.point .address { color: #333; }
 
 .current-location .text { color: #666; }
 
@@ -663,5 +667,10 @@ textarea[contenteditable] {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (min-resolution: 144dpi) {
-    /* Style adjustments for viewports that meet the condition */
+    
+    .headsign .map-button a {
+        background: url(../img/map@2x.png) no-repeat;
+        background-size: 34px 35px;
+    }
+
 }
