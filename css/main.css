@@ -512,6 +512,8 @@ input::-webkit-inner-spin-button {
 
 .lines-found {
     padding: 0;
+    margin: -139px 0 0;
+    opacity: 0;
     list-style: none;
 }
 

@@ -18,11 +18,9 @@ partial( array( 'header' ), array( 'title' => 'Trajetos+' ) );
 					<legend>Procurar linha</legend>
 					<label for="lines" class="visuallyhidden label-line">Linha:</label>
 					<input type="search" pattern="[0-9]*" step="1" name="bus-line" class="input number bus-line" id="line-search" placeholder="Digite o número da linha..." autocomplete="off" min="1" max="999" required>
-					<input type="submit" name="submit" id="search-submit" class="search-submit" value="Procurar" disabled>
 				</fieldset>
-				<div class="throbber hidden"></div>
 			</form>
-			<div class="search-suggestions">
+			<div id="search-suggestions" class="search-suggestions">
 				<ul class="lines-found">
 					<li><a href="#121-ida"><span class="bounding">Ida: </span><span class="name">164 - Forte São João</span></a></li>
 					<li><a href="#121-volta"><span class="bounding">Volta: </span><span class="name">164 - Jardim Camburi</span></a></li>

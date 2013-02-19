@@ -88,24 +88,25 @@ MBP.enableActive();
         });
      };
 
-    $('#search-submit').on('click tap', function() {
-        if (!$(this).attr('disabled')) {
-            $(this).attr('disabled', 'disabled').val('Calculando trajeto...');
-            $('#line-search').blur();
-            showResults();
-        }
+    $('.lines-found a').on('click tap', function() {
+        $('#line-search').blur();
+        showResults();
         return false;
     });
     
+    var showSuggestions = function() {
+        $('.lines-found').animate({
+            marginTop: '10px',
+            opacity: 1
+        }, 300, 'ease');
+    }
+
     /**
      * Enable submit button when typing
      */
     $('#line-search').on('keyup', function() {
-        if ($('#search-submit').attr('disabled')) {
-            $('#search-submit').removeAttr('disabled');
-        }
-        if ($(this).val() === '') {
-            $('#search-submit').attr('disabled', 'disabled');
+        if ($(this).val().length > 3) {
+            showSuggestions();
         }
     });
 
