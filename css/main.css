@@ -405,7 +405,8 @@ input::-webkit-inner-spin-button {
     font-size: 0.8em;
 }
 
-.points .detail .category {
+.points .detail .category,
+.points .detail .hood {
     text-transform: uppercase;
     font-size: 0.7em;
 }
@@ -484,7 +485,7 @@ input::-webkit-inner-spin-button {
     background-position: 7px center;
 }
 
-.itinerary .bus-stop .marker {
+.bus-stop .marker {
     height: 38px;
     border: 1px solid #085EA9;
     background-position: center 3px, center;
@@ -494,6 +495,11 @@ input::-webkit-inner-spin-button {
     -webkit-box-shadow: 0 1px 0 #fff inset, 1px 0 0 #fff inset, -1px 0 0 #fff inset, 0 -1px 0 #fff inset, 0 3px 2px -2px #686859;
     -moz-box-shadow: 0 1px 0 #fff inset, 1px 0 0 #fff inset, -1px 0 0 #fff inset, 0 -1px 0 #fff inset, 0 3px 2px -2px #686859;
     box-shadow: 0 1px 0 #fff inset, 1px 0 0 #fff inset, -1px 0 0 #fff inset, 0 -1px 0 #fff inset, 0 3px 2px -2px #686859;
+}
+
+.bus-stop .description {
+    color: #666;
+    font-size: 0.85em;
 }
 
 /**
