@@ -1,4 +1,4 @@
-				<li class="point bus-stop" id="<?= $pid; ?>">
+				<li class="point bus-stop" id="<?= $pid; ?>" data-lat="<?= $point->coords->lat; ?>" data-lon="<?= $point->coords->lon; ?>">
 					<div class="marker bus-sign"><h3>Ponto de parada</h3></div>
 					<div class="detail">
 						<p class="name"><strong>Ponto nº <?= $point->number; ?></strong></p>

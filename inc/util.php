@@ -13,8 +13,9 @@ function partial( $names, $page = array() ) {
 	}
 }
 
-$json = file_get_contents( 'data/itineraries.json' );
-$data = json_decode( $json );
+// $itineraries = file_get_contents( 'data/itineraries.json' );
+$test = file_get_contents( 'data/test.json' );
+$data = json_decode( $test );
 
 function getItinerary( $line = null, $bound_to = null ) {
 	global $data;
@@ -27,28 +28,23 @@ function getItinerary( $line = null, $bound_to = null ) {
 	}
 }
 
-function streetView( $lat, $lon, $fov, $heading = 330, $pitch = 5 ) {
-	echo '<img src="http://maps.googleapis.com/maps/api/streetview?size=416x312&fov=' .$fov. '&location=' .$lat. '%20' .$lon. '&heading=' .$heading. '&pitch=' .$pitch. '&sensor=false" alt="" width="208" height="156">';
+function streetView( $lat, $lon, $fov = 80, $heading = 330, $pitch = 5 ) {
+	return "http://maps.googleapis.com/maps/api/streetview?size=416x312&fov=${fov}&location=${lat}%20${lon}&heading=${heading}&pitch=${pitch}&sensor=false";
 }
 
 /*
+
 {
-    "121": {
-        "sentido": {
-            "Jardim Camburi": {},
-            "Mario Cypreste": {
-                "pontos": [
-                    {
-                        "type": "oioi",
-                        "category": "hehehe",
-                        "numero": 1234
-                    },
-                    {}
-                ]
-            }
-        }
+    "164": {
+        "Jardim Camburi": [{}, {}, {}],
+        "Forte São João": [{}, {}, {}]
     },
-    "211": "opa"
+    "121": {
+    
+    }
 }
+
+
+
  */
 ?>

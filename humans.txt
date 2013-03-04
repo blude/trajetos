@@ -3,13 +3,15 @@
 
 # TEAM
 
-    Saulo Pratti -- Designer -- @blude
+    Saulo Pratti (@blude)
 
 # THANKS
 
     Mauro Pinheiro
+    Chris Veness (Movable Type Ltda)
 
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
     Zepto.js, Modernizr
+    Haversine formula
