@@ -5,7 +5,9 @@ MBP.enableActive();
 
 ;(function ($) {
 
-    var isMapOpen = false, isMapInitialized = false;
+    var map,
+        isMapOpen = false,
+        isMapInit = false;
 
     // Updated copyright date
     (function () {
@@ -22,124 +24,10 @@ MBP.enableActive();
         document.title = title + ' - ' + document.title;
     };
 
-    /** Converts numeric degrees to radians */
-    if (typeof Number.prototype.toRad === 'undefined') {
-      Number.prototype.toRad = function () {
-        return this * Math.PI / 180;
-      }
-    }
-
-    /** Converts radians to numeric (signed) degrees */
-    if (typeof Number.prototype.toDeg === 'undefined') {
-      Number.prototype.toDeg = function () {
-        return this * 180 / Math.PI;
-      }
-    }
-
-    /** 
-     * Formats the significant digits of a number, using only fixed-point notation (no exponential)
-     * 
-     * @param   {Number} precision: Number of significant digits to appear in the returned string
-     * @returns {String} A string representation of number which contains precision significant digits
-     */
-    if (typeof Number.prototype.toPrecisionFixed === 'undefined') {
-      Number.prototype.toPrecisionFixed = function (precision) {
-        
-        // use standard toPrecision method
-        var n = this.toPrecision(precision);
-        
-        // ... but replace +ve exponential format with trailing zeros
-        n = n.replace(/(.+)e\+(.+)/, function (n, sig, exp) {
-          sig = sig.replace(/\./, '');       // remove decimal from significand
-          l = sig.length - 1;
-          while (exp-- > l) sig = sig + '0'; // append zeros from exponent
-          return sig;
-        });
-        
-        // ... and replace -ve exponential format with leading zeros
-        n = n.replace(/(.+)e-(.+)/, function (n, sig, exp) {
-          sig = sig.replace(/\./, '');       // remove decimal from significand
-          while (exp-- > 1) sig = '0' + sig; // prepend zeros from exponent
-          return '0.' + sig;
-        });
-        
-        return n;
-      }
-    }
-
-    /** Trims whitespace from string (q.v. blog.stevenlevithan.com/archives/faster-trim-javascript) */
-    if (typeof String.prototype.trim === 'undefined') {
-      String.prototype.trim = function () {
-        return String(this).replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-      }
-    }
-
     var numberWithCommas = function (x) {
         var parts = x.toString().split(".");
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         return parts.join(".");
-    }
-
-    /**
-     * Creates a point on the earth's surface at the supplied latitude / longitude
-     *
-     * @constructor
-     * @param {Number} lat: latitude in numeric degrees
-     * @param {Number} lon: longitude in numeric degrees
-     * @param {Number} [rad=6371]: radius of earth if different value is required from standard 6,371km
-     */
-    var LatLon = function (lat, lon, rad) {
-        if (typeof(rad) === 'undefined') rad = 6371;  // earth's mean radius in km
-        // only accept numbers or valid numeric strings
-        this._lat = typeof(lat) === 'number' ? lat : typeof(lat) === 'string' && lat.trim() !=='' ? + lat : NaN;
-        this._lon = typeof(lon) === 'number' ? lon : typeof(lon) === 'string' && lon.trim() !=='' ? + lon : NaN;
-        this._radius = typeof(rad) === 'number' ? rad : typeof(rad) === 'string' && trim(lon) !=='' ? + rad : NaN;
-    }
-
-    /**
-     * Returns the distance from this point to the supplied point, in km 
-     * (using Haversine formula)
-     *
-     * from: Haversine formula - R. W. Sinnott, "Virtues of the Haversine",
-     *       Sky and Telescope, vol 68, no 2, 1984
-     *
-     * @param   {LatLon} point: Latitude/longitude of destination point
-     * @param   {Number} [precision=4]: no of significant digits to use for returned value
-     * @returns {Number} Distance in km between this point and destination point
-     */
-    LatLon.prototype.distanceTo = function (point, precision) {
-        // default 4 sig figs reflects typical 0.3% accuracy of spherical model
-        if (typeof precision === 'undefined') precision = 4;
-
-        var R = this._radius;
-        var lat1 = this._lat.toRad(), lon1 = this._lon.toRad();
-        var lat2 = point._lat.toRad(), lon2 = point._lon.toRad();
-        var dLat = lat2 - lat1;
-        var dLon = lon2 - lon1;
-
-        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(lat1) * Math.cos(lat2) * 
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        var d = R * c;
-        return d.toPrecisionFixed(precision);
-    }
-
-    /**
-     * [simpleDistance description]
-     * @param  {LatLon} point:     Latitute/Longitude of destination point
-     * @return {Number}           Distance in meters between this point and destination point
-     */
-    LatLon.prototype.sDistanceTo = function (point) {
-        var R = this._radius;
-        var lat1 = this._lat.toRad(), lon1 = this._lon.toRad(),
-            lat2 = point._lat.toRad(), lon2 = point._lon.toRad();
-
-        var x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
-        var y = (lat2 - lat1);
-        var d = Math.sqrt(x * x + y * y) * R;
-
-        return (d * 1000).toFixed();
     }
 
     /*
@@ -184,29 +72,6 @@ MBP.enableActive();
         flashCurrentDetail();
     };
 
-    var findClosestPoint = function () {
-        var i, distances, points, closest, cLat, cLon, p1, dist;
-        distances = [];
-        closest = -1;
-        points = $('#upcoming-points').find('.point');
-        cLat = $('#upcoming-points').data('lat');
-        cLon = $('#upcoming-points').data('lon');
-        p1 = new LatLon(cLat, cLon);
-
-        points.each(function (index, item) {
-            var pLat = item.data('lat'),
-                pLon = item.data('lon'),
-                p2 = new LatLon(pLat, pLon);
-
-            dist = p1.sDistanceTo(p2);
-            distances[index] = dist;
-            if (closest === -1 || dist < distances[closest]) {
-                closest = index;
-            }
-        });
-
-        return closest;
-    }
 
     var getCurrentLocation = function () {
 
@@ -221,19 +86,16 @@ MBP.enableActive();
             nextLat = nextPoint.data('lat');
             nextLon = nextPoint.data('lon');
 
-            p1 = new LatLon(cLat, cLon);
-            p2 = new LatLon(nextLat, nextLon);
-            dist = p1.sDistanceTo(p2, 3);
-
-            console.log('Coordenadas iniciais:');
-            console.log('Lat: '+ cLat);
-            console.log('Lon: '+ cLon);
+            p1 = new google.maps.LatLng(cLat, cLon);
+            p2 = new google.maps.LatLng(nextLat, nextLon);
+            dist = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
+            dist = Math.round(dist);
 
             $('#upcoming-points').data('lat', cLat);
             $('#upcoming-points').data('lat', cLon);
 
-            $('#current-location .dist').text(numberWithCommas(dist) + ' metros');
-            console.log('Distância incial até próximo ponto: '+ numberWithCommas(dist) + ' metros');
+            $('#upcoming-points').find('.dist').text(numberWithCommas(dist) + ' metros');
+
         }, function (error) {
             if (error.code === 1) {
                 console.log('Localização negada!');
@@ -254,11 +116,12 @@ MBP.enableActive();
             nextLat = nextPoint.data('lat');
             nextLon = nextPoint.data('lon');
 
-            p1 = new LatLon(cLat, cLon);
-            p2 = new LatLon(nextLat, nextLon);
-            dist = p1.sDistanceTo(p2, 3);
+            p1 = new google.maps.LatLng(cLat, cLon);
+            p2 = new google.maps.LatLng(nextLat, nextLon);
+            dist = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
+            dist = Math.round(dist);
 
-            console.log('Distância até próximo ponto: '+ numberWithCommas(dist) + " metros");
+            console.log('Distância até próximo ponto: '+ dist + " metros");
             $('#current-location .dist').text(numberWithCommas(dist) + ' metros');
 
             if (dist < 30) {
@@ -313,36 +176,78 @@ MBP.enableActive();
         $.scroll($(this).offset().top - 5);
     });
 
+    var initMap = function () {
+        var mapOptions = {
+            zoom: 13,
+            streetViewControl: false,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
+
+        if (Modernizr.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: pos,
+                    animation: google.maps.Animation.DROP,
+                    title: 'Você está aqui.'
+                });
+
+                map.setCenter(pos);
+
+                isMapInit = true;
+
+            }, function (error) {
+                handleNoGeolocation(true);
+                isMapInit = false;
+            });
+        } else {
+            // navegador não suporta geo-localizacao
+            handleNoGeolocation(false);
+            isMapInit = false;   
+        }
+    };
+
+    var handleNoGeolocation = function (errorFlag) {
+        if (errorFlag) {
+            var content = "Erro: geolocalização indisponível.";
+        } else {
+            var content = "O navegador não suporta geolocalização.";
+        }
+
+        var options = {
+            map: map,
+            position: new google.maps.LatLng(-20, -40),
+            content: content
+        };
+
+        var infoWindow = new google.maps.InfoWindow(options);
+        map.setCenter(options.position);
+    };
+
+    var openMap = function () {
+        if (!isMapInit) initMap();
+        $.scroll(0);
+        $('#mapa').fadeIn(200);
+        if (isMapOpen) $.scroll($('#currento-location').offset().top - 310);
+        isMapOpen = true;
+    };
+
+    var closeMap = function () {
+        $('#mapa').fadeOut(200);
+        isMapOpen = false;
+    }
+
+    var toggleMap = function () {
+        isMapOpen ? closeMap() : openMap();
+    }
 
     $('#toggle-map').live('click tap', function () {
-        if (!isMapInitialized) {
-            var mapa = L.map('mapa');
-            L.tileLayer('http://mt{s}.google.com/vt/v=w2.106&x={x}&y={y}&z={z}&s=', {
-                attribution: 'Map by Google',
-                maxZoom: 12,
-                subdomains: '0123'
-            }).addTo(mapa);
-            mapa.locate({
-                setView: true,
-                maxZoom: 12
-            });
-            var onLocationFound = function (e) {
-                L.marker(e.latlng).addTo(mapa);
-            }
-            mapa.on('locationfound', onLocationFound);
-
-            var onLocationError = function (e) {
-                alert(e.message);
-            }
-            mapa.on('locationerror', onLocationError);
-
-            L.Util.requestAnimFrame(mapa.invalidateSize, mapa, false, mapa._container);
-            isMapInitialized = true;
-        }
-        $.scroll(0);
-        $('#mapa').fadeToggle(200);
-        if (isMapOpen) $.scroll($('#current-location').offset().top - 310);
-        isMapOpen = !isMapOpen;
+        toggleMap();
         return false;
     });
 
