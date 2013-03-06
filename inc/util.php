@@ -13,9 +13,9 @@ function partial( $names, $page = array() ) {
 	}
 }
 
-// $itineraries = file_get_contents( 'data/itineraries.json' );
+$itineraries = file_get_contents( 'data/itineraries.json' );
 $test = file_get_contents( 'data/test.json' );
-$data = json_decode( $test );
+$data = json_decode( $itineraries );
 
 function getItinerary( $line = null, $bound_to = null ) {
 	global $data;

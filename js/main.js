@@ -72,6 +72,13 @@ MBP.enableActive();
         flashCurrentDetail();
     };
 
+    var distanceBetween = function (p1, p2) {
+        return google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
+    };
+
+    google.maps.LatLng.prototype.distanceTo = function (p2) {
+        return google.maps.geometry.spherical.computeDistanceBetween(this, p2);
+    };
 
     var getCurrentLocation = function () {
 
@@ -88,7 +95,7 @@ MBP.enableActive();
 
             p1 = new google.maps.LatLng(cLat, cLon);
             p2 = new google.maps.LatLng(nextLat, nextLon);
-            dist = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
+            dist = distanceBetween(p1, p2);
             dist = Math.round(dist);
 
             $('#upcoming-points').data('lat', cLat);
@@ -118,7 +125,7 @@ MBP.enableActive();
 
             p1 = new google.maps.LatLng(cLat, cLon);
             p2 = new google.maps.LatLng(nextLat, nextLon);
-            dist = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
+            dist = distanceBetween(p1, p2);
             dist = Math.round(dist);
 
             console.log('Distância até próximo ponto: '+ dist + " metros");
@@ -130,6 +137,28 @@ MBP.enableActive();
             }
         });
     };
+
+    var goToClosest = function (index) {
+        console.log('Indice do ponto mais próximo: '+ index);
+    }
+
+    var findClosestPoint = function () {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var currentPoint = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var $points = $('#upcoming-points').find('.point');
+            var distances = [],
+                closest = -1;
+            for (var i = 0; i < $points.size(); i++) {
+                var p2 = new google.maps.LatLng($points.eq(i).data('lat'), $points.eq(i).data('lon'));
+                var distance = distanceBetween(currentPoint, p2);
+                distances[i] = distance;
+                if (closest === -1 || distance < distances[closest]) {
+                    closest = i;
+                }
+            }
+            goToClosest(closest);
+        });
+    }
 
     /**
     * Stop form submting
@@ -143,8 +172,8 @@ MBP.enableActive();
                 $('#home').addClass('hidden');
                 $('#page-results').removeClass('hidden');
                 scrollToCurrent();
-
                 if (Modernizr.geolocation) {
+                    console.log('Indice do ponto mais próximo: '+ findClosestPoint());
                     getCurrentLocation();
                 }
             });
@@ -187,14 +216,20 @@ MBP.enableActive();
         map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
         if (Modernizr.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
+            navigator.geolocation.watchPosition(function (position) {
                 var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
+                var image = {
+                    url: 'img/bus-marker.png',
+                    size: new google.maps.Size(32, 41),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(15, 37)
+                };
                 var marker = new google.maps.Marker({
                     map: map,
                     position: pos,
                     animation: google.maps.Animation.DROP,
-                    title: 'Você está aqui.'
+                    title: 'Você está aqui.',
+                    icon: image
                 });
 
                 map.setCenter(pos);
@@ -255,7 +290,6 @@ MBP.enableActive();
      * This goes back to the search (home) page
      */
     $('#go-search').live('click tap', function () {
-        clearTimeout(updateTimer);
         $('#page-results').addClass('hidden');
         $('#home').css('top', '').removeClass('hidden');
         $('#line-search').val('');
