@@ -1,5 +1,4 @@
 /* Call helper methods */
-MBP.scaleFix();
 MBP.hideUrlBar();
 MBP.enableActive();
 
@@ -39,14 +38,14 @@ MBP.enableActive();
 
     var flashCurrentDetail = function () {
         $('#current-location .detail').fadeOut(300, function() {
-            var $next = $('#upcoming-points').find('.bus-stop').first(); 
-            $(this).fadeIn(300).find('.next-bus-stop').text($next);
+            var nextBusStop = $('#upcoming-points').find('.bus-stop').first().find('.name').text(); 
+            $(this).fadeIn(300).find('.next-bus-stop').text(nextBusStop);
         });
     };
 
     var animatePoint = function (point, offset) {
         point.animate({
-            top: offset
+            translateY: offset + 'px'
         }, 300, 'ease-in', function() {
             point.css('top', '').appendTo('#past-points');
         });
@@ -55,7 +54,7 @@ MBP.enableActive();
     var updateItinerary = function () {
         var delta, current, point;
         current = $('#current-location');
-        point = $('#upcoming-points').find('.bus-stop').first();
+        point = $('#upcoming-points').find('.point').first();
         /*
          * calcula o deslocamento a partir da diferença (delta)
          * entre a localizacao do usuario (currentOffset)
@@ -82,26 +81,19 @@ MBP.enableActive();
 
     var getCurrentLocation = function () {
 
-        var cLat, cLon, nextPoint, nextLat, nextLon, p1, p2, dist;
+        var $nextPoint, $2ndNextPoint, $upcoming = $('#upcoming-points'), dist, diffPoints, distP2nd, distStop;
 
         navigator.geolocation.getCurrentPosition(function (position) {
 
-            cLat = position.coords.latitude;
-            cLon = position.coords.longitude;
+            $nextPoint = $upcoming.find('.point').eq(0);
+            var pBus = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var p1 = new google.maps.LatLng($nextPoint.data('lat'), $nextPoint.data('lon'));
 
-            nextPoint = $('#upcoming-points').find('.point').first();
-            nextLat = nextPoint.data('lat');
-            nextLon = nextPoint.data('lon');
+            dist = Math.round(distanceBetween(pBus, p1));
 
-            p1 = new google.maps.LatLng(cLat, cLon);
-            p2 = new google.maps.LatLng(nextLat, nextLon);
-            dist = distanceBetween(p1, p2);
-            dist = Math.round(dist);
-
-            $('#upcoming-points').data('lat', cLat);
-            $('#upcoming-points').data('lat', cLon);
-
-            $('#upcoming-points').find('.dist').text(numberWithCommas(dist) + ' metros');
+            $upcoming.data('lat', position.coords.latitude);
+            $upcoming.data('lat', position.coords.longitude);
+            $upcoming.find('.dist').text(numberWithCommas(dist) + ' metros');
 
         }, function (error) {
             if (error.code === 1) {
@@ -116,22 +108,29 @@ MBP.enableActive();
         });
 
         navigator.geolocation.watchPosition(function (position) {
-            cLat = position.coords.latitude;
-            cLon = position.coords.longitude;
 
-            nextPoint = $('#upcoming-points').find('.point').first();
-            nextLat = nextPoint.data('lat');
-            nextLon = nextPoint.data('lon');
+            $upcoming = $('#upcoming-points');
+            $nextPoint = $upcoming.find('.point').eq(0);
+            $2ndNextPoint = $upcoming.find('.point').eq(1);
 
-            p1 = new google.maps.LatLng(cLat, cLon);
-            p2 = new google.maps.LatLng(nextLat, nextLon);
-            dist = distanceBetween(p1, p2);
-            dist = Math.round(dist);
+            var pBus = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var p1 = new google.maps.LatLng($nextPoint.data('lat'), $nextPoint.data('lon'));
+            var p2 = new google.maps.LatLng($2ndNextPoint.data('lat'), $2ndNextPoint.data('lon'));
+            var pBusStop = new google.maps.LatLng($upcoming.find('.bus-stop').first().data('lat'), $upcoming.find('.bus-stop').first().data('lon'));
 
-            console.log('Distância até próximo ponto: '+ dist + " metros");
-            $('#current-location .dist').text(numberWithCommas(dist) + ' metros');
+//          dist = Math.round(distanceBetween(pBus, p1));
+            distStop = Math.round(distanceBetween(pBus, pBusStop));
 
-            if (dist < 30) {
+            console.log('Distância até próximo ponto: '+ distStop + " metros");
+            $('#current-location .dist').text(numberWithCommas(distStop) + ' metros');
+
+            diffPoints = Math.round(distanceBetween(p1, p2));
+            distP2nd = Math.round(distanceBetween(pBus, p2));
+
+            // compare a distancia entre os pontos P1 e P2 e entre o ônibus e P2.
+            // se a distancia entre o onibus e P2 for menor do que entre os pontos
+            // é por que o ônibus já passou por P1, portanto avance para o próximo
+            if (distP2nd < diffPoints) {
                 console.log("Próximo ponto...");
                 updateItinerary();
             }
@@ -140,6 +139,8 @@ MBP.enableActive();
 
     var goToClosest = function (index) {
         console.log('Indice do ponto mais próximo: '+ index);
+        console.log($('#upcoming-points').find('.point').eq(index));
+        $('#upcoming-points').find('.point').slice(0, index + 1).appendTo('#past-points');
     }
 
     var findClosestPoint = function () {
@@ -157,6 +158,7 @@ MBP.enableActive();
                 }
             }
             goToClosest(closest);
+            scrollToCurrent();
         });
     }
 
@@ -166,14 +168,13 @@ MBP.enableActive();
     var showResults = function () {
         $('#page-results').load('results.php', function() {
             $('#home').animate({
-                top: -$('#home').height()
+                translateY: -$('#home').height() +'px'
             }, 300, 'ease-in', function () {
-                setTitle('121 Mário Cypreste');
+                setTitle('164 - Forte Sâo João');
                 $('#home').addClass('hidden');
                 $('#page-results').removeClass('hidden');
-                scrollToCurrent();
                 if (Modernizr.geolocation) {
-                    console.log('Indice do ponto mais próximo: '+ findClosestPoint());
+                    findClosestPoint();
                     getCurrentLocation();
                 }
             });
@@ -189,7 +190,7 @@ MBP.enableActive();
     
     var showSuggestions = function () {
         $('.lines-found').animate({
-            marginTop: '10px',
+            translateY: '10px',
             opacity: 1
         }, 300, 'ease');
     }
@@ -208,30 +209,32 @@ MBP.enableActive();
     var initMap = function () {
         var mapOptions = {
             zoom: 13,
-            streetViewControl: false,
-            mapTypeControl: false,
+            disableDefaultUI: true,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
         map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
-        if (Modernizr.geolocation) {
-            navigator.geolocation.watchPosition(function (position) {
-                var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                var image = {
-                    url: 'img/bus-marker.png',
-                    size: new google.maps.Size(32, 41),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(15, 37)
-                };
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: pos,
-                    animation: google.maps.Animation.DROP,
-                    title: 'Você está aqui.',
-                    icon: image
-                });
+        var image = {
+            url: 'img/bus-marker.png',
+            size: new google.maps.Size(32, 41),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(15, 37)
+        };
 
+        var marker = new google.maps.Marker({
+            map: map,
+            title: 'Você está aqui.',
+            icon: image
+        });
+
+        var pos;
+
+        if (Modernizr.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                marker.setPosition(pos);
                 map.setCenter(pos);
 
                 isMapInit = true;
@@ -240,6 +243,17 @@ MBP.enableActive();
                 handleNoGeolocation(true);
                 isMapInit = false;
             });
+
+            navigator.geolocation.watchPosition(function (position) {
+                pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                marker.setPosition(pos);
+                map.setCenter(pos);
+
+            }, function (error) {
+                handleNoGeolocation(true);
+            });
+
         } else {
             // navegador não suporta geo-localizacao
             handleNoGeolocation(false);
@@ -274,6 +288,7 @@ MBP.enableActive();
 
     var closeMap = function () {
         $('#mapa').fadeOut(200);
+        scrollToCurrent();
         isMapOpen = false;
     }
 
@@ -291,10 +306,10 @@ MBP.enableActive();
      */
     $('#go-search').live('click tap', function () {
         $('#page-results').addClass('hidden');
-        $('#home').css('top', '').removeClass('hidden');
+        $('#home').css('-webkit-transform', '').removeClass('hidden');
         $('#line-search').val('');
         $('.lines-found').css({
-            marginTop: '-193px',
+            '-webkit-transform': 'translateY(-193px)',
             opacity: 0
         });
         resetTitle();

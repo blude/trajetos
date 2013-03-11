@@ -1359,6 +1359,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : 0,
+			"lon" : 0
+		},
 		"number": 3039,
 		"address": "Av Marechal Campos",
 		"reference": "Em frente ao Salão Marçal",

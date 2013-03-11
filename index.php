@@ -6,7 +6,7 @@ partial( array( 'header' ), array( 'title' => 'Trajetos+' ) );
 	<div class="page page-home" id="home">
 		<div class="hero" role="banner">
 			<hgroup class="branding">
-				<h1 class="title"><a href="./index.html" title="Trajetos+ - Inicio">Trajetos+</a></h1>
+				<h1 class="title"><a href="<?php echo SELF; ?>" title="Trajetos+">Trajetos+</a></h1>
 				<h2 class="slogan">Itinerários de ônibus com pontos de referência e locais de interesse.</h2>
 				<div class="marker bus-marker"></div>
 			</hgroup>

@@ -16,7 +16,7 @@ partial( array( 'topbar' ), array( 'line_num' => 164, 'line_name' => 'Forte São
 				<div class="bus-marker marker"><h3>Você está aqui</h3></div>
 				<div class="detail">
 					<p class="announcement">Próxima parada:</p>
-					<p class="text"><strong class="next-bus-stop">Ponto nº 4081</strong>, a menos de <span class="dist">calculando distância...</span></p>
+					<p class="text"><strong class="next-bus-stop">Ponto nº 0000</strong>, a menos de <span class="dist">...</span></p>
 				</div>
 			</div>
 
