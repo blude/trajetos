@@ -215,6 +215,26 @@ MBP.enableActive();
 
         map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
+        var poly, polyOptions =  {
+            strokeColor: '#0033ff',
+            strokeOpacity: 1.0,
+            strokeWeight: 3.0
+        };
+
+        poly = new google.maps.Polyline(polyOptions);
+
+        poly.setMap(map);
+
+        var path = [];
+
+        $.getJSON('data/itineraries.json', function (data) {
+            var points = data.points;
+            $.each(points, function (key, value) {
+                path.push(new google.maps.LatLng(value.coords.lat, value.coords.lon));
+            });
+            poly.setPath(path);
+        });
+
         var image = {
             url: 'img/bus-marker.png',
             size: new google.maps.Size(32, 41),
@@ -279,16 +299,18 @@ MBP.enableActive();
     };
 
     var openMap = function () {
+        $('#conteiner-mapa').addClass('aberto');
+
         if (!isMapInit) initMap();
-        $.scroll(0);
-        $('#mapa').fadeIn(200);
-        if (isMapOpen) $.scroll($('#currento-location').offset().top - 310);
+
+//        $.scroll(0);
+//        if (isMapOpen) $.scroll($('#currento-location').offset().top - 310);
         isMapOpen = true;
     };
 
     var closeMap = function () {
-        $('#mapa').fadeOut(200);
-        scrollToCurrent();
+        $('#conteiner-mapa').removeClass('aberto');
+ //       scrollToCurrent();
         isMapOpen = false;
     }
 

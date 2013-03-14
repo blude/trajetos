@@ -100,10 +100,32 @@ body {
     z-index: 10;
 }
 
+
+/* mapa */
+.conteiner-mapa {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 320px;
+    height: 220px;
+    z-index: 10;
+    -webkit-transform: translateY(-220px);
+    transform: translateY(-220px);
+    -webkit-transition: 0.2s all ease-in-out;
+    transition: 0.2s all ease-in-out;
+    opacity: 0;
+}
+
+.conteiner-mapa.aberto {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+}
+
 .mapinha {
+    background: #E5E3DF;
     border: 4px solid #fff;
     height: 220px;
-    display: none;
 }
 
 .page-home {
@@ -757,6 +779,16 @@ textarea[contenteditable] {
     .wrapper,
     .page .headsign { width: 480px; }
     
+    .conteiner-mapa {
+        width: 480px;
+        -webkit-transform: translateY(-170px);
+    }
+
+    .mapinha,
+    .conteiner-mapa {
+        height: 170px;
+    }
+
 /*    .page .headsign { margin-left: -240px; } */
     .itinerary .point .detail { width: 380px; }
 
