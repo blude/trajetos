@@ -157,8 +157,13 @@ MBP.enableActive();
                     closest = i;
                 }
             }
-            goToClosest(closest);
-            scrollToCurrent();
+            if (distances[closest] > 600) {
+                alert('Você está mesmo nessa linha?');
+                window.location = window.location.pathname;
+            } else {
+                goToClosest(closest);
+                scrollToCurrent();
+            }
         });
     }
 
@@ -185,6 +190,7 @@ MBP.enableActive();
     $('.lines-found a').on('click tap', function (e) {
         $('#line-search').blur();
         showResults();
+    }).on('touchstart', function (e) {
         e.preventDefault();
     });
     
@@ -318,10 +324,7 @@ MBP.enableActive();
         return false;
     });
 
-    /*
-     * This goes back to the search (home) page
-     */
-    $('#go-search').live('click tap', function () {
+    var goBackToSearch = function() {
         $('#page-results').addClass('hidden');
         $('#home').css('-webkit-transform', '').removeClass('hidden');
         $('#line-search').val('');
@@ -332,7 +335,12 @@ MBP.enableActive();
         resetTitle();
         $.scroll(0);
         return false;
-    });
+    }
+
+    /*
+     * This goes back to the search (home) page
+     */
+    $('#go-search').live('click tap', goBackToSearch);
 
     /*
      * More event listeners
