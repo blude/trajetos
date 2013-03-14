@@ -300,17 +300,12 @@ MBP.enableActive();
 
     var openMap = function () {
         $('#conteiner-mapa').addClass('aberto');
-
         if (!isMapInit) initMap();
-
-//        $.scroll(0);
-//        if (isMapOpen) $.scroll($('#currento-location').offset().top - 310);
         isMapOpen = true;
     };
 
     var closeMap = function () {
         $('#conteiner-mapa').removeClass('aberto');
- //       scrollToCurrent();
         isMapOpen = false;
     }
 
