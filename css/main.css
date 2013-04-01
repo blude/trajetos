@@ -638,10 +638,6 @@ input::-webkit-inner-spin-button {
     text-align: center;
 }
 
-.notice .availability {
-    font-size: 0.85em;
-}
-
 .notice .copyright {
     color: #ACAC9D;
     line-height: 1em;
