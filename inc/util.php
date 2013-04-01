@@ -13,12 +13,15 @@ function partial( $names, $page = array() ) {
 	}
 }
 
-$itineraries = file_get_contents( 'data/itineraries.json' );
-$test = file_get_contents( 'data/test.json' );
-$data = json_decode( $itineraries );
+// $itineraries = file_get_contents( 'data/itineraries.json' );
+// $test = file_get_contents( 'data/test.json' );
 
-function getItinerary( $line = null, $bound_to = null ) {
-	global $data;
+
+
+function getItinerary( $line ) {
+	$itinerary_json = file_get_contents( "data/$line.json" );
+	$data = json_decode( $itinerary_json );
+
 	$id = 1;
 	foreach ( $data->points as $point ) {
 		$type = $point->type;

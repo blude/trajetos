@@ -22,6 +22,6 @@ partial( array( 'topbar' ), array( 'line_num' => 164, 'line_name' => 'Forte São
 			</div>
 
 			<ul id="upcoming-points" class="upcoming points">
-			<?php getItinerary(); ?>
+			<?php getItinerary( $_GET['line'] ); ?>
 			</ul>
 		</div>
