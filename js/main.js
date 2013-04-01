@@ -9,6 +9,14 @@ MBP.startupImage();
         isMapOpen = false,
         isMapInit = false;
 
+    var cssPrefixedTransform = {
+        "WebkitTransform" : "-webkit-transform",
+        "MozTransform" : "-moz-transform",
+        "transform" : "transform"
+    };
+
+    var prefixedTransform = cssPrefixedTransform[Modernizr.prefixed('transform')];
+
     // Updated copyright date
     (function () {
         var currentYear = (new Date().getFullYear());
@@ -46,7 +54,7 @@ MBP.startupImage();
 
     var animatePoint = function (point, offset) {
         point.animate({
-            translateY: offset + 'px'
+            top: offset + 'px'
         }, 300, 'ease-in', function() {
             point.css('top', '').appendTo('#past-points');
         });
@@ -158,41 +166,43 @@ MBP.startupImage();
                     closest = i;
                 }
             }
-            if (distances[closest] > 600) {
-                alert('Você está mesmo nessa linha?');
-                window.location = window.location.pathname;
-            } else {
-                goToClosest(closest);
-                scrollToCurrent();
-            }
+            goToClosest(closest);
+            scrollToCurrent();
         });
     }
 
     /**
     * Stop form submting
     */
-    var showResults = function () {
-        $('#page-results').load('results.php', function() {
-            $('#home').animate({
-                translateY: -$('#home').height() +'px'
-            }, 300, 'ease-in', function () {
-                setTitle('164 - Forte Sâo João');
-                $('#home').addClass('hidden');
-                $('#page-results').removeClass('hidden');
-                if (Modernizr.geolocation) {
-                    findClosestPoint();
-                    getCurrentLocation();
-                }
-            });
-        });
+    var showResults = function (linha) {
+        var linha = linha || 523; // linha padrão
+        $.ajax({
+            url: 'results.php',
+            data: { line: linha },
+            dataType: 'html',
+            context: $("#page-results"),
+            success: function (response) {
+                $(this).append(response);
+                $('#home').animate({
+                    translateY: -$('#home').height() +'px'
+                }, 300, 'ease-in', function () {
+                    setTitle('164 Forte Sâo João');
+                    $('#home').addClass('hidden');
+                    $('#page-results').removeClass('hidden');
+                    if (Modernizr.geolocation) {
+                        findClosestPoint();
+                        getCurrentLocation();
+                    }
+                });
+            }
+        })
     };
 
-
-    $('.lines-found a').on('click tap', function (e) {
+    $('.lines-found a').on('click', function (e) {
         $('#line-search').blur();
-        showResults();
-    }).on('touchstart', function (e) {
-        e.preventDefault();
+        var linha = $(this).data('numero-linha');
+        showResults(linha);
+        return false;
     });
     
     var showSuggestions = function () {
@@ -215,7 +225,7 @@ MBP.startupImage();
 
     var initMap = function () {
         var mapOptions = {
-            zoom: 13,
+            zoom: 15,
             disableDefaultUI: true,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
@@ -326,11 +336,11 @@ MBP.startupImage();
     });
 
     var goBackToSearch = function() {
-        $('#page-results').addClass('hidden');
-        $('#home').css('-webkit-transform', '').removeClass('hidden');
+        $('#page-results').addClass('hidden').empty();
+        $('#home').css(prefixedTransform, '').removeClass('hidden');
         $('#line-search').val('');
         $('.lines-found').css({
-            '-webkit-transform': 'translateY(-193px)',
+            prefixedTransform: 'translateY(-193px)',
             opacity: 0
         });
         resetTitle();
