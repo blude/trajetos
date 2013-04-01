@@ -1,6 +1,7 @@
 /* Call helper methods */
 MBP.hideUrlBar();
 MBP.enableActive();
+MBP.startupImage();
 
 ;(function ($) {
 
