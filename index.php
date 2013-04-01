@@ -22,8 +22,8 @@ partial( array( 'header' ), array( 'title' => 'Trajetos+' ) );
 			</form>
 			<div id="search-suggestions" class="search-suggestions">
 				<ul class="lines-found">
-					<li><a href="#121-ida"><span class="bounding">Ida: </span><span class="name">164 - Forte São João</span></a></li>
-					<li><a href="#121-volta"><span class="bounding">Volta: </span><span class="name">164 - Jardim Camburi</span></a></li>
+					<li><a href="#164" data-numero-linha="164"><span class="bounding">Teste: </span><span class="name">164 - Forte São João</span></a></li>
+					<li><a href="#523" data-numero-linha="523"><span class="bounding">Teste: </span><span class="name">523 - Terminal Jacaraípe</span></a></li>
 				</ul>
 			</div>
 		</div>
