@@ -233,9 +233,9 @@ MBP.startupImage();
         map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
         var poly, polyOptions =  {
-            strokeColor: '#0033ff',
-            strokeOpacity: 1.0,
-            strokeWeight: 3.0
+            strokeColor: '#000000',
+            strokeOpacity: 0.3,
+            strokeWeight: 7.0
         };
 
         poly = new google.maps.Polyline(polyOptions);
@@ -244,7 +244,7 @@ MBP.startupImage();
 
         var path = [];
 
-        $.getJSON('data/itineraries.json', function (data) {
+        $.getJSON('data/164.json', function (data) {
             var points = data.points;
             $.each(points, function (key, value) {
                 path.push(new google.maps.LatLng(value.coords.lat, value.coords.lon));
@@ -285,7 +285,6 @@ MBP.startupImage();
                 pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
                 marker.setPosition(pos);
-                map.setCenter(pos);
 
             }, function (error) {
                 handleNoGeolocation(true);

@@ -1,6 +1,6 @@
 <?php
 include 'inc/util.php';
-partial( array( 'topbar' ), array( 'line_num' => 164, 'line_name' => 'Forte São João' ) );
+partial( array( 'topbar' ), array( 'line_num' => $_GET['line'], 'line_name' => 'Forte São João' ) );
 ?>
 		<div id="conteiner-mapa" class="conteiner-mapa"><div id="mapa" class="mapinha"></div></div>
 
@@ -17,7 +17,7 @@ partial( array( 'topbar' ), array( 'line_num' => 164, 'line_name' => 'Forte São
 				<div class="bus-marker marker"><h3>Você está aqui</h3></div>
 				<div class="detail">
 					<p class="announcement">Próxima parada:</p>
-					<p class="text"><strong class="next-bus-stop">Ponto nº 0000</strong>, a menos de <span class="dist">...</span></p>
+					<p class="text"><strong class="next-bus-stop">Ponto nº ....</strong>, a menos de <span class="dist">...</span></p>
 				</div>
 			</div>
 
