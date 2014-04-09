@@ -146,6 +146,10 @@ body {
     padding-top: 40px;
 }
 
+.hero-about {
+    padding-top: 60px;
+}
+
 .branding { position: relative; }
 
 .branding .title {
@@ -272,7 +276,7 @@ input::-webkit-inner-spin-button {
 }
 
 .home-search {
-    margin: 20px 0;
+    margin: 20px 0 -80px;
 }
 
 .home-search .bus-line {
@@ -527,15 +531,23 @@ input::-webkit-inner-spin-button {
     background-position: 4px center;
 }
 
-.turn .marker.turn-left {
+.turn .marker.turn-left,
+.turn .marker.turn-soft-left {
     /* ../img/ico-turn-left.png */
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPBAMAAADJ+Ih5AAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAD////w8PDg4OCgoKCAgIBwcHBAQEAgICAQEBAAAACQWTE2AAAABnRSTlMAEVWI3e5T93gmAAAAYklEQVQI12NgYDT5/8WQAQhU/////1WBgYHpPwh8YmAQ/f93PlBIgMH+3/J8oJABg/+JtLS0/P8ODP9/l4EYHxj+/3+Z/w3C+H8ezPAHsr6B1NhDGAZAc0AAaA7cZLhdMNsBJRNNYvf0p5UAAAAASUVORK5CYII=);
 }
 
-.turn .marker.turn-right {
+.turn .marker.turn-right,
+.turn .marker.turn-soft-right {
     /* ../ing/ico-turn-right.png */
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA3UlEQVQoz5WT4Q2DIBCFwQXEDuAqxhka0zWcwL9Wl9DFqgs0ygRcOcI1V4qWvuRLJPh43HkKABCI18UyWB4WYOC6tyh633mYubFsgYljLE/LNQh0RkjE0AGo4ihRSgnTNEFZluEe3kCh+X6WhNr3HbqugzzPeTr2QCw8CWWMeUPC53Vdoaoq3sTPax5Jaw1t24Y3+zZjCq6zLHPreZ5BKRUr69iM1HV91vl4zQmfzNU8xmpOMA80kpofgPwwbt7ndPtjwsBPpKAZlf4AnZDYxH4MKmHkTfQsfhILCkRei5Y+y7HjUKYAAAAASUVORK5CYII=);
 }
+
+.turn .marker.turn-straight {
+    /* ../ing/ico-turn-straight.png */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPBAMAAADJ+Ih5AAAAA3NCSVQICAjb4U/gAAAAKlBMVEUAAACvr69wcHD////g4OAfHx/AwMAPDw8wMDDQ0NCAgIDv7+9/f38QEBDwx+PIAAAACXBIWXMAAAsSAAALEgHS3X78AAAAFnRFWHRDcmVhdGlvbiBUaW1lADA1LzE5LzEzjJ/OBgAAAB50RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAAAGJJREFUCJljMLY+ysB62tiAwVicgYGBXdiAwZABBBgNGLYzMLRcYGDfwHCAgWFyAgOQCmDgMjZiAFIMDM3Gxg1ghZONjSeAGQxAQxjAkiBGAEgXiHEAZA6QATQHbjLcLpjtAMfsFQm4nFqCAAAAAElFTkSuQmCC);
+}
+
 
 .bus-marker,
 .current-location .marker {
@@ -640,7 +652,7 @@ input::-webkit-inner-spin-button {
  }
 
 .notice {
-    margin-top: -130px;
+/*    margin-top: -130px; */
     padding-bottom: 20px;
     text-align: center;
 }

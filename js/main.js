@@ -18,10 +18,9 @@ MBP.startupImage();
     var prefixedTransform = cssPrefixedTransform[Modernizr.prefixed('transform')];
 
     // Updated copyright date
-    (function () {
-        var currentYear = (new Date().getFullYear());
+    (function (currentYear) {
         $('#current-year').text(currentYear);
-    })();
+    })(new Date().getFullYear());
 
     var resetTitle = function () {
         var title = document.title;
@@ -64,6 +63,7 @@ MBP.startupImage();
         var delta, current, point;
         current = $('#current-location');
         point = $('#upcoming-points').find('.point').first();
+
         /*
          * calcula o deslocamento a partir da diferença (delta)
          * entre a localizacao do usuario (currentOffset)
@@ -72,6 +72,7 @@ MBP.startupImage();
          */
         delta = current.offset().top - point.offset().top;
         animatePoint(point, delta);
+
         // verifica se o bloco que exibe a posicao atual
         // esta dentro da area visivel
         if (isScrolledIntoView(current) && !isMapOpen) {
@@ -175,7 +176,7 @@ MBP.startupImage();
     * Stop form submting
     */
     var showResults = function (linha) {
-        var linha = linha || 523; // linha padrão
+        var linha = linha || 164; // linha padrão
         $.ajax({
             url: 'results.php',
             data: { line: linha },

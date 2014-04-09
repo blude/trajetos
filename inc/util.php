@@ -15,9 +15,6 @@ function partial( $names, $page = array() ) {
 
 // $itineraries = file_get_contents( 'data/itineraries.json' );
 // $test = file_get_contents( 'data/test.json' );
-
-
-
 function getItinerary( $line ) {
 	$itinerary_json = file_get_contents( "data/$line.json" );
 	$data = json_decode( $itinerary_json );
@@ -25,7 +22,7 @@ function getItinerary( $line ) {
 	$id = 1;
 	foreach ( $data->points as $point ) {
 		$type = $point->type;
-		$pid = str_pad( (int) $id, 4, "0", STR_PAD_LEFT );
+		$pid = str_pad( (int)$id, 4, "0", STR_PAD_LEFT );
 		include "points/$type.php";
 		$id++;
 	}
