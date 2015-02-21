@@ -1,16 +1,15 @@
 <?php
 include 'inc/util.php';
-partial( array( 'header' ), array( 'title' => 'Trajetos+' ) );
+partial( array( 'header' ), array( 'title' => 'Trajetos - Itinerários de ônibus com pontos de referência e locais de interesse.' ) );
 ?>
 	<!-- home/search form page -->
 	<div class="page page-home" id="home">
 		<div class="hero" role="banner">
 			<hgroup class="branding">
-				<h1 class="title"><a href="./index.html" title="Trajetos+ - Inicio">Trajetos+</a></h1>
-				<h2 class="slogan">Itinerários de ônibus com pontos de referência e locais de interesse.</h2>
+				<h1 class="title"><a href="<?php echo SELF; ?>">Trajetos</a></h1>
 				<div class="marker bus-marker"></div>
 			</hgroup>
-			<p class="description">Veja pontos de referência, fotos, mapas, vias e nunca mais desça no ponto errado. <a href="#" class="more" title="Saiba como o Trajetos+ funciona">Saiba mais &rarr;</a></p>
+			<p class="description">Veja pontos de referência, fotos, mapas, vias e nunca mais desça no ponto errado. <a href="about.php" class="more" title="Informações sobre Trajetos">Saiba mais</a>.</p>
 		</div>
 		<div class="search home-search" role="search" id="search-form">
 			<form action="<?php echo SELF; ?>" action="get" name="search" class="search-form" id="line-search-form">
@@ -22,14 +21,13 @@ partial( array( 'header' ), array( 'title' => 'Trajetos+' ) );
 			</form>
 			<div id="search-suggestions" class="search-suggestions">
 				<ul class="lines-found">
-					<li><a href="#121-ida"><span class="bounding">Ida: </span><span class="name">164 - Forte São João</span></a></li>
-					<li><a href="#121-volta"><span class="bounding">Volta: </span><span class="name">164 - Jardim Camburi</span></a></li>
+					<li><a href="#164" data-numero-linha="164"><span class="bounding">Ida: </span><span class="name">164 - Forte São João</span></a></li>
+					<li><a href="#164" data-numero-linha="523"><span class="bounding">Volta: </span><span class="name">164 - Jardim Camburi</span></a></li>
 				</ul>
 			</div>
 		</div>
 		<footer class="notice" role="contentinfo">
-			<p class="availability">Serviço limitado, disponível apenas em algumas linhas de ônibus de Vitória.</p>
-			<p class="copyright"><small>© <span id="current-year"></span> Trajetos+<br>Feito com <span class="wub" title="amor">♥</span> em Vitória.</small></p>
+			<p class="copyright"><small>© <span id="current-year">201X</span> Saulo Pratti<br>Feito com <span class="wub" title="abor">♥</span> em Vitória.</small></p>
 		</footer>
 	</div>
 	<!-- search result page -->

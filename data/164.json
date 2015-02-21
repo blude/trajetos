@@ -1,21 +1,45 @@
 {
-	"line": "164 - Jardim Camburi/Forte São João",
+	"line_num" : 164,
+	"line_name": "Jardim Camburi/Forte São João",
 	"bound_to": "Forte São João",
 	"points": [
 	{
 		"type": "turn",
 		"dir": "straight",
+		"coords" : {
+			"lat" : -20.26065,
+			"lon" : -40.26009
+		},
+		"direction": "Segue pela",
+		"address": "R. Osvaldo Bastos de Souza Freitas"
+	},
+	{
+		"visibility": "hidden",
+		"type": "turn",
+		"dir": "straight",
+		"coords" : {
+			"lat" : -20.25949,
+			"lon" : -40.25898
+		},
 		"direction": "Segue pela",
 		"address": "R. Osvaldo Bastos de Souza Freitas"
 	},
 	{
 		"type": "turn",
 		"dir": "right",
+		"coords" : {
+			"lat" : -20.25984,
+			"lon" : -40.25811
+		},
 		"direction": "Curva à direita",
 		"address": "Av. dos Expedicionários"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.259861,
+			"lon" : -40.258791
+		},
 		"number": 8005,
 		"address": "Av Dos Expedicionários",
 		"reference": "Em frente ao condominio Porto Rotondo n645 - Atlantica Ville",
@@ -23,6 +47,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.261314,
+			"lon" : -40.259225
+		},
 		"number": 8006,
 		"address": "Av Dos Expedicionários",
 		"reference": "Em frente ao condominio Acapulco",
@@ -30,6 +58,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.262713,
+			"lon" : -40.259046
+		},
 		"number": 8007,
 		"address": "Av Dos Expedicionários",
 		"reference": "Em frente ao Ed. nº 295",
@@ -37,6 +69,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.263457,
+			"lon" : -40.258629
+		},
 		"number": 8000,
 		"address": "Av Dos Expedicionários",
 		"reference": "Em frente ao nº 1151",
@@ -44,6 +80,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.262712,
+			"lon" : -40.258241
+		},
 		"number": 8001,
 		"address": "Av Dos Expedicionários",
 		"reference": "Defronte ao Ed Marville nº B125 - Atlantica Ville",
@@ -51,6 +91,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.260743,
+			"lon" : -40.258240
+		},
 		"number": 8002,
 		"address": "Av Dos Expedicionários",
 		"reference": "Trailer do Fabinho - Ed. Algarue - Atlantica Ville",
@@ -59,11 +103,19 @@
 	{
 		"type": "turn",
 		"dir": "left",
+		"coords" : {
+			"lat" : -20.259595,
+			"lon" : -40.258251
+		},
 		"direction": "Curva à esquerda",
 		"address": "R. Osvaldo Bastos de Souza Freitas"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.259430,
+			"lon" : -40.258985
+		},
 		"number": 8003,
 		"address": "Av Dos Expedicionários",
 		"reference": "Em frente ao Prqe. Botânico da Vale Jardim Camburi - Atlantica Ville",
@@ -72,33 +124,57 @@
 	{
 		"type": "turn",
 		"dir": "soft-right",
+		"coords" : {
+			"lat" : -20.261163,
+			"lon" : -40.260049
+		},
 		"direction": "Leve curva à direita",
 		"address": "Av. Manoel Nunes do Amaral Pereira"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.261699,
+			"lon" : -40.260531
+		},
 		"label": "Dog Hotel",
 		"category": "Abrigo para animais"
 	},
 	{
-		"type": "turn",
-		"dir": "right",
-		"direction": "Curva à direita",
-		"address": "R. Ruy Pinto Bandeira"
-	},
-	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.262398,
+			"lon" : -40.261175
+		},
 		"label": "Praça da FISK",
 		"category": "Praça"
 	},
 	{
 		"type": "turn",
 		"dir": "right",
+		"coords" : {
+			"lat" : -20.262474,
+			"lon" : -40.261264
+		},
+		"direction": "Curva à direita",
+		"address": "R. Ruy Pinto Bandeira"
+	},
+	{
+		"type": "turn",
+		"dir": "right",
+		"coords" : {
+			"lat" : -20.26258,
+			"lon" : -40.263723
+		},
 		"direction": "Curva à direita",
 		"address": "R. José Celso Cláudio"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.261260,
+			"lon" : -40.263693
+		},
 		"number": 8013,
 		"address": "Rua José Celso Cláudio",
 		"reference": "Em frente a loja Pepeu Tintas nº2",
@@ -106,36 +182,56 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.261332,
+			"lon" : -40.263804
+		},
 		"label": "Pepeu Tintas",
 		"category": "Loja"
 	},
 	{
 		"type": "turn",
 		"dir": "left",
+		"coords" : {
+			"lat" : -20.260013,
+			"lon" : -40.263852
+		},
 		"direction": "Curva à esquerda",
 		"address": "R. Italina Pereira Motta"
 	},
 	{
 		"type": "street-view",
 		"coords": {
-			"lat": "-20.259904",
-			"lon": "-40.263912"
+			"lat": -20.259904,
+			"lon": -40.263912
 		},
 		"heading": 330,
 		"fov": ""
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.259885,
+			"lon" : -40.26393
+		},
 		"label": "Disk Pizza Paulista",
 		"category": "Pizzaria"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.259334,
+			"lon" : -40.2646
+		},
 		"label": "Come Come",
 		"category": "Restaurante"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.258912,
+			"lon" : -40.264892
+		},
 		"number": 8015,
 		"address": "R. Italina Pereira Motta",
 		"reference": "Esquina com a Rua Alcides Viana. Em frente a òtica Victória nº144",
@@ -143,20 +239,28 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.258264,
+			"lon" : -40.265829
+		},
 		"label": "Banestes",
 		"category": "Agência bancária"
 	},
 	{
 		"type": "street-view",
 		"coords": {
-			"lat": "-20.257590",
-			"lon": "-40.266585"
+			"lat": -20.257590,
+			"lon": -40.266585
 		},
 		"heading": 330,
 		"fov": 50
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.257330,
+			"lon" : -40.266738
+		},
 		"number": 8018,
 		"address": "R. Italina Pereira Motta",
 		"reference": "Shopping Plaza",
@@ -164,27 +268,47 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.257368,
+			"lon" : -40.266869
+		},
 		"label": "Shopping Plaza",
 		"category": "Centro Comercial"
 	},
 	{
 		"type": "turn",
 		"dir": "right",
+		"coords" : {
+			"lat" : -20.257245,
+			"lon" : -40.267028
+		},
 		"direction": "Curva à direita",
-		"address": "R. Italina Pereira Motta"
+		"address": "R. Maria Auxiliadora Gomes Salomão"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.256747,
+			"lon" : -40.267012
+		},
 		"label": "Primeira Igreja Batista em Jardim Camburi",
 		"category": "Igreja"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.256281,
+			"lon" : -40.267041
+		},
 		"label": "Dallas Embalagens",
 		"category": "Loja"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.255608,
+			"lon" : -40.266975
+		},
 		"number": 8026,
 		"address": "Rua Italina Pereira Motta",
 		"reference": "Em frente a Super Casa Mat. de Construção",
@@ -193,46 +317,74 @@
 	{
 		"type": "street-view",
 		"coords": {
-			"lat": "-20.25562298425089",
-			"lon": "-40.26706341505053"
+			"lat": -20.2556229,
+			"lon": -40.2670634
 		},
 		"heading": "-10",
 		"fov": 50
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.255474,
+			"lon" : -40.267113
+		},
 		"label": "Praça da Igreja Católica",
 		"category": "Praça"
 	},
 	{
 		"type": "turn",
 		"dir": "left",
+		"coords" : {
+			"lat" : -20.255285,
+			"lon" : -40.26713
+		},
 		"direction": "Curva à esquerda",
 		"address": "R. Alcino Pereira Neto"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.25528,
+			"lon" : -40.267264
+		},
 		"label": "40 Sabores",
 		"category": "Sorveteria"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.255237,
+			"lon" : -40.267607
+		},
 		"label": "Farmácia Santa Lúcia",
 		"category": "Loja"
 	},
 	{
 		"type": "turn",
 		"dir": "right",
+		"coords" : {
+			"lat" : -20.25523,
+			"lon" : -40.267704
+		},
 		"direction": "Curva à direita",
 		"address": "R. Augusto Emílio Estelita Lins"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.254148,
+			"lon" : -40.267628
+		},
 		"label": "Pão Chic",
 		"category": "Padaria"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.253351,
+			"lon" : -40.267496
+		},
 		"number": 8028,
 		"address": "Av Augusto Emílio Estelita Lins",
 		"reference": "Ed. Vila Verona n 150",
@@ -240,45 +392,86 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.252945,
+			"lon" : -40.267567
+		},
 		"label": "Conde do Sanduíche",
 		"category": "Lanchonete"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.25226,
+			"lon" : -40.267508
+		},
 		"label": "Fraternidade Espírita de Jardim Camburi (Fejac)",
 		"category": "Centro Espírita"
 	},
 	{
 		"type": "turn",
 		"dir": "left",
+		"coords" : {
+			"lat" : -20.251837,
+			"lon" : -40.267492
+		},
 		"direction": "Curva à esquerda",
 		"address": "R. Victorino Cardoso"
 	},
 	{
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.251702,
+			"lon" : -40.268398
+		},
+		"label": "Escola Municipal ASFA",
+		"category": "Escola de Ensino Fundamental"
+	},
+	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.251590,
+			"lon" : -40.268958
+		},
 		"number": 8031,
 		"address": "Rua Victorino Cardoso",
 		"reference": "Escola Municipal - ASFA",
 		"hood": "Jardim Camburi"
 	},
 	{
-		"type": "poi",
-		"label": "Escola Municipal ASFA",
-		"category": "Escola de Ensino Fundamental"
+		"type": "street-view",
+		"coords": {
+			"lat": -20.251649,
+			"lon": -40.269533
+		},
+		"heading": 280,
+		"fov": 90
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.251586,
+			"lon" : -40.270356
+		},
 		"label": "Palladares",
 		"category": "Restaurante"
 	},
 	{
 		"type": "turn",
 		"dir": "right",
+		"coords" : {
+			"lat" : -20.251561,
+			"lon" : -40.270429
+		},
 		"direction": "Curva à direita",
 		"address": "Av. Dr. Herwan Modenese Wanderley"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.250098,
+			"lon" : -40.270236
+		},
 		"number": 8032,
 		"address": "Av Doutor Herwan Modenese Wanderley",
 		"reference": "De fronte a Estácio de Sá / Esquna com a rua Esmeria Barros Deorce.",
@@ -286,34 +479,58 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.249543,
+			"lon" : -40.270327
+		},
 		"label": "Faculdade Estácio de Sá",
 		"category": "Centro universitário"
 	},
 	{
 		"type": "turn",
 		"dir": "soft-left",
+		"coords" : {
+			"lat" : -20.24878,
+			"lon" : -40.270214
+		},
 		"direction": "Curva suave à esquerda",
 		"address": "Av. Isaac Lopes de Rubim"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.248226,
+			"lon" : -40.270418
+		},
 		"label": "Praça Nildes Mendes Rangel",
 		"category": "Praça"
 	},
 	{
 		"type": "turn",
 		"dir": "right",
+		"coords" : {
+			"lat" : -20.245609,
+			"lon" : -40.271695
+		},
 		"direction": "Curva à direita",
 		"address": "Av. Engenheiro Charles Bitran"
 	},
 	{
 		"type": "turn",
 		"dir": "left",
+		"coords" : {
+			"lat" : -20.245307,
+			"lon" : -40.271137
+		},
 		"direction": "Curva à esquerda",
 		"address": "Av. Governador Eurico Rezende"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.244205,
+			"lon" : -40.271791
+		},
 		"number": 8060,
 		"address": "Av Governador Eurico Rezende",
 		"reference": "Em frente a um lote vago.",
@@ -322,41 +539,69 @@
 	{
 		"type": "turn",
 		"dir": "left",
+		"coords" : {
+			"lat" : -20.243928,
+			"lon" : -40.271909
+		},
 		"direction": "Curva à esquerda",
 		"address": "R. Sérgio Nasser"
 	},
 	{
 		"type": "turn",
 		"dir": "left",
+		"coords" : {
+			"lat" : -20.24425,
+			"lon" : -40.272489
+		},
 		"direction": "Curva à esquerda",
 		"address": "R. Eugênio Pacheco de Queiroz"
 	},
 	{
 		"type": "bus-stop",
 		"number": 8057,
+		"coords" : {
+			"lat" : -20.246471,
+			"lon" : -40.271066
+		},
 		"address": "Av Eugênio Pacheco De Queiroz",
 		"reference": "Defronte a Escola",
 		"hood": "Jardim Camburi"
 	},
 	{
 		"type": "poi",
-		"label": "EEEM \"Prof. José Renato da Costa Pacheco\"",
+		"coords" : {
+			"lat" : -20.246656,
+			"lon" : -40.27118
+		},
+		"label": "EEEM “Prof. José Renato da Costa Pacheco”",
 		"category": "Escola"
 	},
 	{
 		"type": "turn",
 		"dir": "straight",
-		"direction": "Segue em frente",
+		"coords" : {
+			"lat" : -20.246868,
+			"lon" : -40.271072
+		},
+		"direction": "Continua pela",
 		"address": "Av. Isaac Lopes de Rubim"
 	},
 	{
 		"type": "turn",
 		"dir": "right",
+		"coords" : {
+			"lat" : -20.24877,
+			"lon" : -40.270289
+		},
 		"direction": "Curva à direita",
 		"address": "R. Raul de Oliveira Neves"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.248925,
+			"lon" : -40.271405
+		},
 		"number": 8033,
 		"address": "Av Raul Oliveira Neves",
 		"reference": "Av Raul Oliveira Neves",
@@ -365,29 +610,58 @@
 	{
 		"type": "turn",
 		"dir": "left",
+		"coords" : {
+			"lat" : -20.249344,
+			"lon" : -40.27221
+		},
 		"direction": "Curva à esquerda",
 		"address": "R. Teófilo Costa"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.250015,
+			"lon" : -40.271950
+		},
 		"number": 8034,
 		"address": "Rua Theófilo Costa",
 		"reference": "Ed. Lagoa Juparanã n 160",
 		"hood": "Jardim Camburi"
 	},
 	{
+		"type": "street-view",
+		"coords": {
+			"lat": -20.251095,
+			"lon": -40.271716
+		},
+		"heading": 230,
+		"fov": ""
+	},
+	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.251352,
+			"lon" : -40.271695
+		},
 		"label": "Shopping Norte Sul",
 		"category": "Shopping Center"
 	},
 	{
 		"type": "turn",
 		"dir": "left",
+		"coords" : {
+			"lat" : -20.251614,
+			"lon" : -40.271668
+		},
 		"direction": "Curva à esquerda",
 		"address": "Av. Armando Duarte Rabello"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.251644,
+			"lon" : -40.271130
+		},
 		"number": 8036,
 		"address": "Av Armando Duarte Rabello",
 		"reference": "Em frente ao nº 144",
@@ -395,36 +669,56 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.251684,
+			"lon" : -40.270423
+		},
 		"label": "Cerimonial Porto Bianco",
 		"category": "Espaço de Eventos"
 	},
 	{
 		"type": "street-view",
 		"coords": {
-			"lat": "-20.251723",
-			"lon": "-40.26997"
+			"lat": -20.251723,
+			"lon": -40.26997
 		},
 		"heading": 110,
 		"fov": 70
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.25166,
+			"lon" : -40.26968
+		},
 		"label": "Banco do Brasil",
 		"category": "Agência Bancária"
 	},
 	{
 		"type": "turn",
 		"dir": "right",
+		"coords" : {
+			"lat" : -20.25165,
+			"lon" : -40.26947
+		},
 		"direction": "Curva à direita",
 		"address": "R. Carlos Martins"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2521674,
+			"lon" : -40.2696097
+		},
 		"label": "SICOOB",
 		"category": "Agência Bancária"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.2532173,
+			"lon" : -40.269729
+		},
 		"number": 8037,
 		"address": "Rua Carlos Martins",
 		"reference": "",
@@ -432,16 +726,28 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2535086,
+			"lon" : -40.2697277
+		},
 		"label": "Toys & Kids",
 		"category": "Espaço de Eventos"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2549936,
+			"lon" : -40.269838
+		},
 		"label": "Globo Farma",
 		"category": "Drogaria"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.2549936,
+			"lon" : -40.269838
+		},
 		"number": 8039,
 		"address": "Rua Carlos Martins",
 		"reference": "Em frente ao Bar e Restaurante Coronel Picanha",
@@ -449,26 +755,46 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2553254,
+			"lon" : -40.269856
+		},
 		"label": "Unidade de Saúde Raul Oliveira Nunes",
 		"category": "Centro Médico"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.255697,
+			"lon" : -40.269880
+		},
 		"label": "Policlínica Jardim Camburi",
 		"category": "Centro Médico"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2560678,
+			"lon" : -40.2698760
+		},
 		"label": "Blockbuster/Americanas Express",
 		"category": "Loja de Vídeo"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2566214,
+			"lon" : -40.2698500
+		},
 		"label": "Arte Mimo",
 		"category": "Escola Primária"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.257097,
+			"lon" : -40.2698365
+		},
 		"number": 8041,
 		"address": "Rua Carlos Martins",
 		"reference": "Em frente a drogaria Plantão",
@@ -476,11 +802,19 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2573455,
+			"lon" : -40.2698347
+		},
 		"label": "CNA",
 		"category": "Escola de idiomas"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.257949,
+			"lon" : -40.269813
+		},
 		"number": 8043,
 		"address": "Rua Carlos Martins",
 		"reference": "Em frente ao nº 945",
@@ -488,21 +822,37 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2586113,
+			"lon" : -40.2697550
+		},
 		"label": "Globo Fórmula",
 		"category": "Drogaria"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2594577,
+			"lon" : -40.26970939
+		},
 		"label": "Cerimonial Lago de Garda",
 		"category": "Espaço de Eventos"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2603812,
+			"lon" : -40.2696488
+		},
 		"label": "CCAA",
 		"category": "Escola de Idiomas"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.2611970,
+			"lon" : -40.2696211
+		},
 		"number": 8045,
 		"address": "Rua Carlos Martins",
 		"reference": "Obra da Garra - De fronte ao nº 626, Spetin Lanches",
@@ -510,16 +860,28 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2614727,
+			"lon" : -40.2695849
+		},
 		"label": "Laboratório Deomar Bittencourt",
 		"category": "Laboratório"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2619086,
+			"lon" : -40.2695633
+		},
 		"label": "Rock Burger",
-		"category": "Lanchonete"
+		"category": "Restaurante fast-food"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.2635524,
+			"lon" : -40.2695148
+		},
 		"number": 8047,
 		"address": "Rua Carlos Martins",
 		"reference": "Em frente ao nº 325 - Ed. Capitania",
@@ -527,16 +889,28 @@
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2642128,
+			"lon" : -40.2694098
+		},
 		"label": "Delícias do Trigo",
 		"category": "Padaria"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.264814,
+			"lon" : -40.2694362
+		},
 		"label": "Escola São Bernardo (ESB)",
 		"category": "Escola de Primária"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.2655211,
+			"lon" : -40.2694268
+		},
 		"number": 8049,
 		"address": "Rua Carlos Martins",
 		"reference": "Esq. c/ entrada de serviço do Hotel Canto do Sol",
@@ -544,6 +918,10 @@
 	},
 	{
 		"type": "turn",
+		"coords" : {
+			"lat" : -20.266621,
+			"lon" : -40.2693822
+		},
 		"dir": "right",
 		"direction": "Curva à direita",
 		"address": "Av. Fernando Ferrari"
@@ -551,52 +929,114 @@
 	{
 		"type": "street-view",
 		"coords": {
-			"lat": "-20.26668",
-			"lon": "-40.26955"
+			"lat": -20.26668,
+			"lon": -40.26955
 		},
 		"heading": 300,
 		"fov": 90
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.2667964,
+			"lon" : -40.2696583
+		},
 		"label": "Hotel Canto do Sol",
 		"category": "Hotel"
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.267173,
+			"lon" : -40.2706019
+		},
 		"label": "Praia de Camburi",
 		"category": "Praia"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.2687870,
+			"lon" : -40.2734280
+		},
 		"number": 6025,
 		"address": "Av Dante Michelini",
 		"reference": "Defronte ao quiosque 25 - Luí",
 		"hood": "Aeroporto"
 	},
 	{
+		"type": "street-view",
+		"coords": {
+			"lat": -20.269887,
+			"lon": -40.275407
+		},
+		"heading": 160,
+		"fov": 90
+	},
+	{
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.267173,
+			"lon" : -40.2706019
+		},
+		"label": "Àrea do Aeroporto de Vitória",
+		"category": "Outro"
+	},
+	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.272252,
+			"lon" : -40.278829
+		},
 		"number": 6073,
 		"address": "Avn Dante Michelini",
 		"reference": "Em frente ao pier de Camburi.",
 		"hood": "Aeroporto"
 	},
 	{
-		"type": "bus-stop",
-		"number": 6042,
-		"address": "Avn Dante Michelini",
-		"reference": "Ao lado da antiga Boate Megazoom",
-		"hood": "Aeroporto"
+		"type": "street-view",
+		"coords" : {
+			"lat" : -20.273181,
+			"lon" : -40.280364
+		},
+		"heading": 240,
+		"fov": 60
+	},
+	{
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.2748209,
+			"lon" : -40.2825630
+		},
+		"label": "Posto Esso",
+		"category": "Posto de combustível"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.275207,
+			"lon" : -40.283073
+		},
 		"number": 6081,
 		"address": "Av Dante Michelini",
 		"reference": "Ed. Palazzo de Veneza n 2401(Palazzo Verona)",
 		"hood": "Mata Da Praia"
 	},
 	{
+		"type": "street-view",
+		"coords" : {
+			"lat" : -20.276851,
+			"lon" : -40.28502
+		},
+		"heading": 240,
+		"fov": 60
+	},
+	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.277254,
+			"lon" : -40.2854960
+		},
 		"number": 6082,
 		"address": "Av Dante Michelini",
 		"reference": "Ed Praia da Enseada nº2097, próx. à esquina com a Rua Antônio Borges",
@@ -604,46 +1044,137 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.2797882,
+			"lon" : -40.287836
+		},
 		"number": 6085,
 		"address": "Av Dante Michelini",
 		"reference": "Em frente ao Ed. Praia Park nº 1601. (La Residence)",
 		"hood": "Mata Da Praia"
 	},
 	{
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.28081506,
+			"lon" : -40.2883914
+		},
+		"label": "Hotel Aruan",
+		"category": "Hotel"
+	},
+	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.281536,
+			"lon" : -40.2888643
+		},
 		"number": 6079,
 		"address": "Av Dante Michelini",
 		"reference": "Baia Banco Itau - Próx. a esquina com a Rua Aristóbulo B. Leão",
 		"hood": "Jardim Da Penha"
 	},
 	{
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.2816742,
+			"lon" : -40.2889010
+		},
+		"label": "Itaú",
+		"category": "Banco"
+	},
+	{
 		"type": "turn",
 		"dir": "right",
+		"coords" : {
+			"lat" : -20.2817552,
+			"lon" : -40.2890527
+		},
 		"direction": "Curva à direita",
 		"address": "R. Aristóbulo Barbosa Leão"
 	},
 	{
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.2807945,
+			"lon" : -40.291036
+		},
+		"label": "Banco do Brasil",
+		"category": "Banco"
+	},
+	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.280197,
+			"lon" : -40.2921172
+		},
 		"number": 6037,
 		"address": "Rua Aristóbulo Barbosa Leão",
 		"reference": "Em frente a Padaria Empório do Trigo.",
 		"hood": "Jardim Da Penha"
 	},
 	{
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.2796528,
+			"lon" : -40.2932842
+		},
+		"label": "Victoria Mall",
+		"category": "Centro comercial"
+	},
+	{
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.279405,
+			"lon" : -40.293820
+		},
+		"label": "Paganotto Molduras",
+		"category": "Loja de hobbies"
+	},
+	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.279289,
+			"lon" : -40.294017
+		},
 		"number": 6035,
 		"address": "Rua Aristóbulo Barbosa Leão",
 		"reference": "Esquina Rua Caetano Vello / Em frente ao Rio Grande do Sul n°655",
 		"hood": "Mata Da Praia"
 	},
 	{
+		"type" : "street-view",
+		"coords" : {
+			"lat" : -20.2790841,
+			"lon" : -40.29440554
+		},
+		"fov" : 90,
+		"heading" : 300
+	},
+	{
 		"type": "turn",
+		"coords" : {
+			"lat" : -20.2790476,
+			"lon" : -40.294682
+		},
 		"dir": "left",
 		"direction": "Curva à esquerda",
 		"address": "Av. Hugo Viola"
 	},
 	{
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.279237,
+			"lon" : -40.29506303
+		},
+		"label": "Vivo",
+		"category": "Loja de celulares"
+	},
+	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.279573,
+			"lon" : -40.295570
+		},
 		"number": 6034,
 		"address": "Av Hugo Viola",
 		"reference": "Clínica Jardim da Penha n°931",
@@ -652,11 +1183,19 @@
 	{
 		"type": "turn",
 		"dir": "right",
+		"coords" : {
+			"lat" : -20.2799123,
+			"lon" : -40.2961470
+		},
 		"direction": "Curva à direita",
 		"address": "Av. Alziro Zarur"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.2796130,
+			"lon" : -40.2982661
+		},
 		"number": 6031,
 		"address": "Av Alziro Zarur",
 		"reference": "Condomínio / Esquina com a Rua Gensérico Encarnação.",
@@ -664,33 +1203,67 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.2794627,
+			"lon" : -40.2998287
+		},
 		"number": 6030,
 		"address": "Av Alziro Zarur",
 		"reference": "Galeria Ed. Cesar Resende n°438",
 		"hood": "Mata Da Praia"
 	},
 	{
+		"type": "street-view",
+		"coords": {
+			"lat": -20.279357,
+			"lon": -40.300046
+		},
+		"heading": 300,
+		"fov": 90
+	},
+	{
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.279280,
+			"lon" : -40.300515
+		},
+		"label": "Buana Tricolor",
+		"category": "Bar"
+	},
+	{
 		"type": "turn",
 		"dir": "left",
+		"coords" : {
+			"lat" : -20.2788368,
+			"lon" : -40.3012270
+		},
 		"direction": "Curva à esquerda",
 		"address": "Av. Fernando Ferrari"
 	},
 	{
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.2789702,
+			"lon" : -40.3012974
+		},
+		"label": "Universidade Federal do Espírito Santo (Ufes)",
+		"category": "Universidade"
+	},
+	{
 		"type": "street-view",
 		"coords": {
-			"lat": "-20.279259",
-			"lon": "-40.301346"
+			"lat": -20.279259,
+			"lon": -40.301346
 		},
 		"heading": 210,
 		"fov": 90
 	},
 	{
-		"type": "poi",
-		"label": "Universidade Federal do Espírito Santo (Ufes)",
-		"category": "Universidade"
-	},
-	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.281096,
+			"lon" : -40.301770
+		},
 		"number": 6165,
 		"address": "Av Fernando Ferrari",
 		"reference": "Baia defronte ao Cartório Amorim",
@@ -699,32 +1272,66 @@
 	{
 		"type": "street-view",
 		"coords": {
-			"lat": "-20.2851274",
-			"lon": "-40.30270724"
+			"lat": -20.2851274,
+			"lon": -40.30270724
 		},
 		"heading": 210,
 		"fov": 120
 	},
 	{
 		"type": "poi",
+		"coords" : {
+			"lat" : -20.28652,
+			"lon" : -40.30367
+		},
 		"label": "Ponto da Passagem",
 		"category": "Ponte"
 	},
 	{
+		"type": "turn",
+		"dir": "soft-right",
+		"coords" : {
+			"lat" : -20.28773,
+			"lon" : -40.30423
+		},
+		"direction": "Curva suave à direita",
+		"address": "R. Dona Maria Rosa"
+	},
+	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.2884305,
+			"lon" : -40.304638
+		},
 		"number": 4022,
 		"address": "Rua Dona Maria Rosa",
 		"reference": "Hotel Embaixador n°200",
 		"hood": "Andorinhas"
 	},
 	{
-		"type": "turn",
-		"dir": "soft-right",
-		"direction": "Curva suave à direita",
-		"address": "R. Dona Maria Rosa"
+		"type": "poi",
+		"coords" : {
+			"lat" : -20.2891754,
+			"lon" : -40.3049853
+		},
+		"label": "Hotel da Ilha",
+		"category": "Hotel"
+	},
+	{
+		"type": "street-view",
+		"coords": {
+			"lat": -20.290228,
+			"lon": -40.30554636
+		},
+		"heading": 210,
+		"fov": 70
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.291185,
+			"lon" : -40.306087
+		},
 		"number": 4023,
 		"address": "Rua Dona Maria Rosa",
 		"reference": "Box 10 Auto Center - Posto de Gasolina",
@@ -733,11 +1340,19 @@
 	{
 		"type": "turn",
 		"dir": "soft-right",
+		"coords" : {
+			"lat" : -20.29185,
+			"lon" : -40.30641
+		},
 		"direction": "Curva suave à direita",
 		"address": "Av. Maruípe"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.292944,
+			"lon" : -40.309451
+		},
 		"number": 4024,
 		"address": "Av Maruípe",
 		"reference": "Em frente ao supermercado Pontes Cordeiro",
@@ -745,6 +1360,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.294897,
+			"lon" : -40.312437
+		},
 		"number": 4029,
 		"address": "Av Maruípe",
 		"reference": "Loja Cartoon Papelaria e Informática",
@@ -752,6 +1371,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.296161,
+			"lon" : -40.314996
+		},
 		"number": 4031,
 		"address": "Av Maruípe",
 		"reference": "em frente a residencia nº 1605",
@@ -759,6 +1382,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.298051,
+			"lon" : -40.317011
+		},
 		"number": 4056,
 		"address": "Av Marechal Campos",
 		"reference": "Em frente ao Hospital Santa Rita/ hemocentro",
@@ -767,11 +1394,19 @@
 	{
 		"type": "turn",
 		"dir": "left",
+		"coords" : {
+			"lat" : -20.297078,
+			"lon" : -40.31740
+		},
 		"direction": "Curva à esquerda",
 		"address": "Av. Marechal Campos"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.300481,
+			"lon" : -40.315815
+		},
 		"number": 4058,
 		"address": "Av Marechal Campos",
 		"reference": "Defronte a Newlamps n 1378",
@@ -779,6 +1414,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.303345,
+			"lon" : -40.314518
+		},
 		"number": 3038,
 		"address": "Av Marechal Campos",
 		"reference": "Em frente ao n°925.",
@@ -786,6 +1425,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.304702,
+			"lon" : -40.314394
+		},
 		"number": 3039,
 		"address": "Av Marechal Campos",
 		"reference": "Em frente ao Salão Marçal",
@@ -793,6 +1436,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.307862,
+			"lon" : -40.314466
+		},
 		"number": 3041,
 		"address": "Av Marechal Campos",
 		"reference": "Em frente a Nova Vitória n 329",
@@ -800,6 +1447,10 @@
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.310048,
+			"lon" : -40.314509
+		},
 		"number": 3044,
 		"address": "Av Marechal Campos",
 		"reference": "Em frente a Drogaria e Perfumaria Rede Certa n 69.",
@@ -808,11 +1459,19 @@
 	{
 		"type": "turn",
 		"dir": "right",
+		"coords" : {
+			"lat" : -20.310733,
+			"lon" : -40.31446
+		},
 		"direction": "Curva à direita",
 		"address": "Av. Vitória"
 	},
 	{
 		"type": "bus-stop",
+		"coords" : {
+			"lat" : -20.310868,
+			"lon" : -40.315891
+		},
 		"number": 3011,
 		"address": "Av Vitória",
 		"reference": "Em frente a Cohab nº2045",
@@ -821,6 +1480,10 @@
 	{
 		"type": "bus-stop",
 		"number": 3014,
+		"coords" : {
+			"lat" : -20.311248,
+			"lon" : -40.318543
+		},
 		"address": "Av Vitória",
 		"reference": "Em frente ao IFES",
 		"hood": "Jucutuquara"
@@ -828,13 +1491,21 @@
 	{
 		"type": "bus-stop",
 		"number": 3015,
+		"coords" : {
+			"lat" : -20.311753,
+			"lon" : -40.320228
+		},
 		"address": "Av Vitória",
 		"reference": "Praça de Jucutuquara",
 		"hood": "Jucutuquara"
 	},
 	{
 		"type": "bus-stop",
-		"number": 3014,
+		"number": 3016,
+		"coords" : {
+			"lat" : -20.314545,
+			"lon" : -40.322318
+		},
 		"address": "Av Vitória",
 		"reference": "Entrada do Bairro Romão",
 		"hood": "Romão"
@@ -842,6 +1513,10 @@
 	{
 		"type": "bus-stop",
 		"number": 1002,
+		"coords" : {
+			"lat" : -20.316656,
+			"lon" : -40.323888
+		},
 		"address": "Av Vitória",
 		"reference": "Em frente a antiga Grafitusa",
 		"hood": "Forte São João"

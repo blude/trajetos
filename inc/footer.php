@@ -2,7 +2,7 @@
 <script src="js/vendor/zepto.min.js"></script>
 <script src="js/vendor/zepto.scroll.js"></script>
 <script src="js/vendor/zepto.fx_methods.js"></script>
-<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBGrYoBEvBOmdQH4bbbPpnPFfzk4Vfa9ok&libraries=geometry,places,panoramio&sensor=true"></script>
 <script src="js/helper.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>

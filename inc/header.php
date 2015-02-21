@@ -8,7 +8,7 @@
 	<meta name="description" content="Siga por locais de interesse, fotos, mapas, indicações curva-a-curva e nunca mais desça num ponto de ônibus errado.">
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width,user-scalable=no">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
 	<meta http-equiv="cleartype" content="on">
 
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png">
@@ -23,7 +23,6 @@
 
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css">
 	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>

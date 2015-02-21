@@ -1,17 +1,26 @@
 /* Call helper methods */
-MBP.scaleFix();
 MBP.hideUrlBar();
 MBP.enableActive();
+MBP.startupImage();
 
 ;(function ($) {
 
-    var isMapOpen = false, isMapInitialized = false;
+    var map,
+        isMapOpen = false,
+        isMapInit = false;
+
+    var cssPrefixedTransform = {
+        "WebkitTransform" : "-webkit-transform",
+        "MozTransform" : "-moz-transform",
+        "transform" : "transform"
+    };
+
+    var prefixedTransform = cssPrefixedTransform[Modernizr.prefixed('transform')];
 
     // Updated copyright date
-    (function () {
-        var currentYear = (new Date().getFullYear());
+    (function (currentYear) {
         $('#current-year').text(currentYear);
-    })();
+    })(new Date().getFullYear());
 
     var resetTitle = function () {
         var title = document.title;
@@ -22,124 +31,10 @@ MBP.enableActive();
         document.title = title + ' - ' + document.title;
     };
 
-    /** Converts numeric degrees to radians */
-    if (typeof Number.prototype.toRad === 'undefined') {
-      Number.prototype.toRad = function () {
-        return this * Math.PI / 180;
-      }
-    }
-
-    /** Converts radians to numeric (signed) degrees */
-    if (typeof Number.prototype.toDeg === 'undefined') {
-      Number.prototype.toDeg = function () {
-        return this * 180 / Math.PI;
-      }
-    }
-
-    /** 
-     * Formats the significant digits of a number, using only fixed-point notation (no exponential)
-     * 
-     * @param   {Number} precision: Number of significant digits to appear in the returned string
-     * @returns {String} A string representation of number which contains precision significant digits
-     */
-    if (typeof Number.prototype.toPrecisionFixed === 'undefined') {
-      Number.prototype.toPrecisionFixed = function (precision) {
-        
-        // use standard toPrecision method
-        var n = this.toPrecision(precision);
-        
-        // ... but replace +ve exponential format with trailing zeros
-        n = n.replace(/(.+)e\+(.+)/, function (n, sig, exp) {
-          sig = sig.replace(/\./, '');       // remove decimal from significand
-          l = sig.length - 1;
-          while (exp-- > l) sig = sig + '0'; // append zeros from exponent
-          return sig;
-        });
-        
-        // ... and replace -ve exponential format with leading zeros
-        n = n.replace(/(.+)e-(.+)/, function (n, sig, exp) {
-          sig = sig.replace(/\./, '');       // remove decimal from significand
-          while (exp-- > 1) sig = '0' + sig; // prepend zeros from exponent
-          return '0.' + sig;
-        });
-        
-        return n;
-      }
-    }
-
-    /** Trims whitespace from string (q.v. blog.stevenlevithan.com/archives/faster-trim-javascript) */
-    if (typeof String.prototype.trim === 'undefined') {
-      String.prototype.trim = function () {
-        return String(this).replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-      }
-    }
-
     var numberWithCommas = function (x) {
         var parts = x.toString().split(".");
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         return parts.join(".");
-    }
-
-    /**
-     * Creates a point on the earth's surface at the supplied latitude / longitude
-     *
-     * @constructor
-     * @param {Number} lat: latitude in numeric degrees
-     * @param {Number} lon: longitude in numeric degrees
-     * @param {Number} [rad=6371]: radius of earth if different value is required from standard 6,371km
-     */
-    var LatLon = function (lat, lon, rad) {
-        if (typeof(rad) === 'undefined') rad = 6371;  // earth's mean radius in km
-        // only accept numbers or valid numeric strings
-        this._lat = typeof(lat) === 'number' ? lat : typeof(lat) === 'string' && lat.trim() !=='' ? + lat : NaN;
-        this._lon = typeof(lon) === 'number' ? lon : typeof(lon) === 'string' && lon.trim() !=='' ? + lon : NaN;
-        this._radius = typeof(rad) === 'number' ? rad : typeof(rad) === 'string' && trim(lon) !=='' ? + rad : NaN;
-    }
-
-    /**
-     * Returns the distance from this point to the supplied point, in km 
-     * (using Haversine formula)
-     *
-     * from: Haversine formula - R. W. Sinnott, "Virtues of the Haversine",
-     *       Sky and Telescope, vol 68, no 2, 1984
-     *
-     * @param   {LatLon} point: Latitude/longitude of destination point
-     * @param   {Number} [precision=4]: no of significant digits to use for returned value
-     * @returns {Number} Distance in km between this point and destination point
-     */
-    LatLon.prototype.distanceTo = function (point, precision) {
-        // default 4 sig figs reflects typical 0.3% accuracy of spherical model
-        if (typeof precision === 'undefined') precision = 4;
-
-        var R = this._radius;
-        var lat1 = this._lat.toRad(), lon1 = this._lon.toRad();
-        var lat2 = point._lat.toRad(), lon2 = point._lon.toRad();
-        var dLat = lat2 - lat1;
-        var dLon = lon2 - lon1;
-
-        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(lat1) * Math.cos(lat2) * 
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        var d = R * c;
-        return d.toPrecisionFixed(precision);
-    }
-
-    /**
-     * [simpleDistance description]
-     * @param  {LatLon} point:     Latitute/Longitude of destination point
-     * @return {Number}           Distance in meters between this point and destination point
-     */
-    LatLon.prototype.sDistanceTo = function (point) {
-        var R = this._radius;
-        var lat1 = this._lat.toRad(), lon1 = this._lon.toRad(),
-            lat2 = point._lat.toRad(), lon2 = point._lon.toRad();
-
-        var x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
-        var y = (lat2 - lat1);
-        var d = Math.sqrt(x * x + y * y) * R;
-
-        return (d * 1000).toFixed();
     }
 
     /*
@@ -151,14 +46,14 @@ MBP.enableActive();
 
     var flashCurrentDetail = function () {
         $('#current-location .detail').fadeOut(300, function() {
-            var $next = $('#upcoming-points').find('.bus-stop').first(); 
-            $(this).fadeIn(300).find('.next-bus-stop').text($next);
+            var nextBusStop = $('#upcoming-points').find('.bus-stop').first().find('.name').text(); 
+            $(this).fadeIn(300).find('.next-bus-stop').text(nextBusStop);
         });
     };
 
     var animatePoint = function (point, offset) {
         point.animate({
-            top: offset
+            top: offset + 'px'
         }, 300, 'ease-in', function() {
             point.css('top', '').appendTo('#past-points');
         });
@@ -167,7 +62,8 @@ MBP.enableActive();
     var updateItinerary = function () {
         var delta, current, point;
         current = $('#current-location');
-        point = $('#upcoming-points').find('.bus-stop').first();
+        point = $('#upcoming-points').find('.point').first();
+
         /*
          * calcula o deslocamento a partir da diferença (delta)
          * entre a localizacao do usuario (currentOffset)
@@ -176,6 +72,7 @@ MBP.enableActive();
          */
         delta = current.offset().top - point.offset().top;
         animatePoint(point, delta);
+
         // verifica se o bloco que exibe a posicao atual
         // esta dentro da area visivel
         if (isScrolledIntoView(current) && !isMapOpen) {
@@ -184,56 +81,30 @@ MBP.enableActive();
         flashCurrentDetail();
     };
 
-    var findClosestPoint = function () {
-        var i, distances, points, closest, cLat, cLon, p1, dist;
-        distances = [];
-        closest = -1;
-        points = $('#upcoming-points').find('.point');
-        cLat = $('#upcoming-points').data('lat');
-        cLon = $('#upcoming-points').data('lon');
-        p1 = new LatLon(cLat, cLon);
+    var distanceBetween = function (p1, p2) {
+        return google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
+    };
 
-        points.each(function (index, item) {
-            var pLat = item.data('lat'),
-                pLon = item.data('lon'),
-                p2 = new LatLon(pLat, pLon);
-
-            dist = p1.sDistanceTo(p2);
-            distances[index] = dist;
-            if (closest === -1 || dist < distances[closest]) {
-                closest = index;
-            }
-        });
-
-        return closest;
-    }
+    google.maps.LatLng.prototype.distanceTo = function (p2) {
+        return google.maps.geometry.spherical.computeDistanceBetween(this, p2);
+    };
 
     var getCurrentLocation = function () {
 
-        var cLat, cLon, nextPoint, nextLat, nextLon, p1, p2, dist;
+        var $nextPoint, $2ndNextPoint, $upcoming = $('#upcoming-points'), dist, diffPoints, distP2nd, distStop;
 
         navigator.geolocation.getCurrentPosition(function (position) {
 
-            cLat = position.coords.latitude;
-            cLon = position.coords.longitude;
+            $nextPoint = $upcoming.find('.point').eq(0);
+            var pBus = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var p1 = new google.maps.LatLng($nextPoint.data('lat'), $nextPoint.data('lon'));
 
-            nextPoint = $('#upcoming-points').find('.point').first();
-            nextLat = nextPoint.data('lat');
-            nextLon = nextPoint.data('lon');
+            dist = Math.round(distanceBetween(pBus, p1));
 
-            p1 = new LatLon(cLat, cLon);
-            p2 = new LatLon(nextLat, nextLon);
-            dist = p1.sDistanceTo(p2, 3);
+            $upcoming.data('lat', position.coords.latitude);
+            $upcoming.data('lat', position.coords.longitude);
+            $upcoming.find('.dist').text(numberWithCommas(dist) + ' metros');
 
-            console.log('Coordenadas iniciais:');
-            console.log('Lat: '+ cLat);
-            console.log('Lon: '+ cLon);
-
-            $('#upcoming-points').data('lat', cLat);
-            $('#upcoming-points').data('lat', cLon);
-
-            $('#current-location .dist').text(numberWithCommas(dist) + ' metros');
-            console.log('Distância incial até próximo ponto: '+ numberWithCommas(dist) + ' metros');
         }, function (error) {
             if (error.code === 1) {
                 console.log('Localização negada!');
@@ -247,57 +118,97 @@ MBP.enableActive();
         });
 
         navigator.geolocation.watchPosition(function (position) {
-            cLat = position.coords.latitude;
-            cLon = position.coords.longitude;
 
-            nextPoint = $('#upcoming-points').find('.point').first();
-            nextLat = nextPoint.data('lat');
-            nextLon = nextPoint.data('lon');
+            $upcoming = $('#upcoming-points');
+            $nextPoint = $upcoming.find('.point').eq(0);
+            $2ndNextPoint = $upcoming.find('.point').eq(1);
 
-            p1 = new LatLon(cLat, cLon);
-            p2 = new LatLon(nextLat, nextLon);
-            dist = p1.sDistanceTo(p2, 3);
+            var pBus = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var p1 = new google.maps.LatLng($nextPoint.data('lat'), $nextPoint.data('lon'));
+            var p2 = new google.maps.LatLng($2ndNextPoint.data('lat'), $2ndNextPoint.data('lon'));
+            var pBusStop = new google.maps.LatLng($upcoming.find('.bus-stop').first().data('lat'), $upcoming.find('.bus-stop').first().data('lon'));
 
-            console.log('Distância até próximo ponto: '+ numberWithCommas(dist) + " metros");
-            $('#current-location .dist').text(numberWithCommas(dist) + ' metros');
+//          dist = Math.round(distanceBetween(pBus, p1));
+            distStop = Math.round(distanceBetween(pBus, pBusStop));
 
-            if (dist < 30) {
+            console.log('Distância até próximo ponto: '+ distStop + " metros");
+            $('#current-location .dist').text(numberWithCommas(distStop) + ' metros');
+
+            diffPoints = Math.round(distanceBetween(p1, p2));
+            distP2nd = Math.round(distanceBetween(pBus, p2));
+
+            // compare a distancia entre os pontos P1 e P2 e entre o ônibus e P2.
+            // se a distancia entre o onibus e P2 for menor do que entre os pontos
+            // é por que o ônibus já passou por P1, portanto avance para o próximo
+            if (distP2nd < diffPoints) {
                 console.log("Próximo ponto...");
                 updateItinerary();
             }
         });
     };
 
+    var goToClosest = function (index) {
+        console.log('Indice do ponto mais próximo: '+ index);
+        console.log($('#upcoming-points').find('.point').eq(index));
+        $('#upcoming-points').find('.point').slice(0, index + 1).appendTo('#past-points');
+    }
+
+    var findClosestPoint = function () {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var currentPoint = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var $points = $('#upcoming-points').find('.point');
+            var distances = [],
+                closest = -1;
+            for (var i = 0; i < $points.size(); i++) {
+                var p2 = new google.maps.LatLng($points.eq(i).data('lat'), $points.eq(i).data('lon'));
+                var distance = distanceBetween(currentPoint, p2);
+                distances[i] = distance;
+                if (closest === -1 || distance < distances[closest]) {
+                    closest = i;
+                }
+            }
+            goToClosest(closest);
+            scrollToCurrent();
+        });
+    }
+
     /**
     * Stop form submting
     */
-    var showResults = function () {
-        $('#page-results').load('results.php', function() {
-            $('#home').animate({
-                top: -$('#home').height()
-            }, 300, 'ease-in', function () {
-                setTitle('121 Mário Cypreste');
-                $('#home').addClass('hidden');
-                $('#page-results').removeClass('hidden');
-                scrollToCurrent();
-
-                if (Modernizr.geolocation) {
-                    getCurrentLocation();
-                }
-            });
-        });
+    var showResults = function (linha) {
+        var linha = linha || 164; // linha padrão
+        $.ajax({
+            url: 'results.php',
+            data: { line: linha },
+            dataType: 'html',
+            context: $("#page-results"),
+            success: function (response) {
+                $(this).append(response);
+                $('#home').animate({
+                    translateY: -$('#home').height() +'px'
+                }, 300, 'ease-in', function () {
+                    setTitle('164 Forte Sâo João');
+                    $('#home').addClass('hidden');
+                    $('#page-results').removeClass('hidden');
+                    if (Modernizr.geolocation) {
+                        findClosestPoint();
+                        getCurrentLocation();
+                    }
+                });
+            }
+        })
     };
 
-
-    $('.lines-found a').on('click tap', function (e) {
+    $('.lines-found a').on('click', function (e) {
         $('#line-search').blur();
-        showResults();
-        e.preventDefault();
+        var linha = $(this).data('numero-linha');
+        showResults(linha);
+        return false;
     });
     
     var showSuggestions = function () {
         $('.lines-found').animate({
-            marginTop: '10px',
+            translateY: '10px',
             opacity: 1
         }, 300, 'ease');
     }
@@ -313,55 +224,134 @@ MBP.enableActive();
         $.scroll($(this).offset().top - 5);
     });
 
+    var initMap = function () {
+        var mapOptions = {
+            zoom: 15,
+            disableDefaultUI: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
+
+        var poly, polyOptions =  {
+            strokeColor: '#000000',
+            strokeOpacity: 0.3,
+            strokeWeight: 7.0
+        };
+
+        poly = new google.maps.Polyline(polyOptions);
+
+        poly.setMap(map);
+
+        var path = [];
+
+        $.getJSON('data/164.json', function (data) {
+            var points = data.points;
+            $.each(points, function (key, value) {
+                path.push(new google.maps.LatLng(value.coords.lat, value.coords.lon));
+            });
+            poly.setPath(path);
+        });
+
+        var image = {
+            url: 'img/bus-marker.png',
+            size: new google.maps.Size(32, 41),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(15, 37)
+        };
+
+        var marker = new google.maps.Marker({
+            map: map,
+            title: 'Você está aqui.',
+            icon: image
+        });
+
+        var pos;
+
+        if (Modernizr.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                marker.setPosition(pos);
+                map.setCenter(pos);
+
+                isMapInit = true;
+
+            }, function (error) {
+                handleNoGeolocation(true);
+                isMapInit = false;
+            });
+
+            navigator.geolocation.watchPosition(function (position) {
+                pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                marker.setPosition(pos);
+
+            }, function (error) {
+                handleNoGeolocation(true);
+            });
+
+        } else {
+            // navegador não suporta geo-localizacao
+            handleNoGeolocation(false);
+            isMapInit = false;   
+        }
+    };
+
+    var handleNoGeolocation = function (errorFlag) {
+        if (errorFlag) {
+            var content = "Erro: geolocalização indisponível.";
+        } else {
+            var content = "O navegador não suporta geolocalização.";
+        }
+
+        var options = {
+            map: map,
+            position: new google.maps.LatLng(-20, -40),
+            content: content
+        };
+
+        var infoWindow = new google.maps.InfoWindow(options);
+        map.setCenter(options.position);
+    };
+
+    var openMap = function () {
+        $('#conteiner-mapa').addClass('aberto');
+        if (!isMapInit) initMap();
+        isMapOpen = true;
+    };
+
+    var closeMap = function () {
+        $('#conteiner-mapa').removeClass('aberto');
+        isMapOpen = false;
+    }
+
+    var toggleMap = function () {
+        isMapOpen ? closeMap() : openMap();
+    }
 
     $('#toggle-map').live('click tap', function () {
-        if (!isMapInitialized) {
-            var mapa = L.map('mapa');
-            L.tileLayer('http://mt{s}.google.com/vt/v=w2.106&x={x}&y={y}&z={z}&s=', {
-                attribution: 'Map by Google',
-                maxZoom: 12,
-                subdomains: '0123'
-            }).addTo(mapa);
-            mapa.locate({
-                setView: true,
-                maxZoom: 12
-            });
-            var onLocationFound = function (e) {
-                L.marker(e.latlng).addTo(mapa);
-            }
-            mapa.on('locationfound', onLocationFound);
-
-            var onLocationError = function (e) {
-                alert(e.message);
-            }
-            mapa.on('locationerror', onLocationError);
-
-            L.Util.requestAnimFrame(mapa.invalidateSize, mapa, false, mapa._container);
-            isMapInitialized = true;
-        }
-        $.scroll(0);
-        $('#mapa').fadeToggle(200);
-        if (isMapOpen) $.scroll($('#current-location').offset().top - 310);
-        isMapOpen = !isMapOpen;
+        toggleMap();
         return false;
     });
 
-    /*
-     * This goes back to the search (home) page
-     */
-    $('#go-search').live('click tap', function () {
-        clearTimeout(updateTimer);
-        $('#page-results').addClass('hidden');
-        $('#home').css('top', '').removeClass('hidden');
+    var goBackToSearch = function() {
+        $('#page-results').addClass('hidden').empty();
+        $('#home').css(prefixedTransform, '').removeClass('hidden');
         $('#line-search').val('');
         $('.lines-found').css({
-            marginTop: '-193px',
+            prefixedTransform: 'translateY(-193px)',
             opacity: 0
         });
         resetTitle();
         $.scroll(0);
         return false;
-    });
+    }
+
+    /*
+     * This goes back to the search (home) page
+     */
+    $('#go-search').live('click tap', goBackToSearch);
 
     /*
      * More event listeners
