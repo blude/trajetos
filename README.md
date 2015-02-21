@@ -1,4 +1,4 @@
-# Trajetos+
+# Trajetos
 
 Itinerários de ônibus com pontos de referência e locais de interesse.
 
